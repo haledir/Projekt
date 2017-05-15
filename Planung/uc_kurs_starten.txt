@@ -1,0 +1,18 @@
+# Use-Case Kurs starten
+
+Ziel: Anwender startet einen Lernkurs (Anfänger, Fortgeschritten oder Experte)
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: Anwender muss registriert und eingeloggt sein.
+Auslösendes Ereignis: Klick auf einen entsprechend Kurs
+
+Ablaufschritte:
+	Standard:
+		- Weiterleitung vom Dashboard in den Kurs.
+		- Laden des Editors
+		- Laden der Aufgabenstellung
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

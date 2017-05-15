@@ -1,0 +1,11 @@
+Use-Cases:
+
+- User registriert sich
+- User Login
+- Passwort vergessen
+- Falscher Login
+- Kurs starten
+- Kurs fortsetzen
+- Eingabe kontrollieren
+- Einstellungen ändern
+- Logout

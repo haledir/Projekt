@@ -1,0 +1,20 @@
+# Use-Case Login
+
+Ziel: Anwender loggt sich in seinen Bereich ein
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: Anwender muss registriert sein.
+Auslösendes Ereignis: Anwender füllt Benutzername und Passwort auf der Startseite aus und klickt auf "Login".
+
+Ablaufschritte:
+	Standard:
+		- Benutzername und Passwort ausfüllen
+		- Login/Anmelden klicken
+		- Prüfen ob Benutzername und Passwort in der richtigen Kombination eingegeben wurden
+		- Anwender ins Dashboard weiterleiten
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!
+		- Benutzername/Passwort falsch

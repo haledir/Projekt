@@ -1,0 +1,25 @@
+# Use-Case Eingabe Kontrollieren
+
+Ziel: Die Eingabe des Anwenders auf Richtigkeit kontrollieren
+Akteur: 
+	primär: Plattform
+	sekundär: Anwender, RESTApi
+
+Vorbedingung: Anwender hat eine Aufgabe gelöst und auf "Überprüfen/Check/Submit/oder so" geklickt
+Auslösendes Ereignis: siehe Vorbedingung
+
+Ablaufschritte:
+	Standard:
+		- Source Code einlesen
+		- Aufgabenstellung laden
+		- Musterlösung laden
+		- Eingelesenen Source Code mit Musterlösung überprüfen
+		- Gemachte Fehler oder richtiges Ergebnis anzeigen
+		
+		
+	Alternativen:
+		Source Code ist richtig, jedoch nicht wie die Musterlösung:
+		- Eingelesenen Source Code kompilieren
+		- Ergebnis überprüfen
+		- Ergebnis anzeigen
+		

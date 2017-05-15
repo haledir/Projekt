@@ -1,0 +1,25 @@
+# User registiert sich
+
+Ziel: Anwender registriert einen Account auf der Plattform
+Akteur: 
+	primär: Anwender
+	sekundär: plattform, RESTApi
+
+Vorbedingung: keine
+Auslösendes Ereignis: Klick auf "Registieren"
+
+Ablaufschritte:
+	Standard:
+		- Klick auf "Registrieren"
+		- Weiterleitung auf Registrieren-Seite
+		- Angabe von Benutzername, Vorname, Nachname, Matrikelnummer, eMail, eMail-Wiederholung, Passwort, Passwort-Wiederholung
+		- Während der Eingabe automatische Kontrolle, ob das Passwort und die eMail den Normen entsprechen
+		- Klick auf "Weiter"
+		- Bestätigungsemail versenden
+		- Benutzer in DB anlegen via RESTApi
+		- Benutzer zum Dashboard weiterleiten
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!
+		- Doppelter Benutzername, eMail, Matrikelnummer, etc.
+		- Falsche Eingaben, etc.

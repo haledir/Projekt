@@ -1,0 +1,18 @@
+# Use-Case Template
+
+Ziel: 
+Akteur: 
+	primär: 
+	sekundär: 
+
+Vorbedingung: 
+Auslösendes Ereignis: 
+
+Ablaufschritte:
+	Standard:
+		- Step 1
+		- Step 2
+		- etc.
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

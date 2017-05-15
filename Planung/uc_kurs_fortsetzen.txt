@@ -1,0 +1,20 @@
+# Use-Case Kurs fortsetzen
+
+Ziel: Anwender kann an dem Punkt weiterarbeiten, wo er den Kurs verlassen hat.
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: Anwender muss einen Kurs angefangen haben.
+Auslösendes Ereignis: Klick auf Kurs fortsetzen.
+
+Ablaufschritte:
+	Standard:
+		- Klick auf Kurs fortsetzen
+		- Überprüfen, wo der Anwender den Kurs verlassen hat
+		- Weiterleiten in den Kurs
+		- Laden des Editors
+		- Laden des Fortschritts/Aufgabenstellung
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

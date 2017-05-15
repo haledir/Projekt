@@ -1,0 +1,16 @@
+# Use-Case Logout
+
+Ziel: Anwender loggt sich aus.
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform
+
+Vorbedingung: Anwender ist eingeloggt.
+Auslösendes Ereignis: Anwender klickt auf Logout.
+
+Ablaufschritte:
+	Standard:
+		- Weiterleitung auf die Startseite
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

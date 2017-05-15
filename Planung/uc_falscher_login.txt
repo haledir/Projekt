@@ -1,0 +1,17 @@
+# Use-Case Falscher Login
+
+Ziel: Anwender informieren, dass die eingegeben Daten nicht stimmen.
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: -
+Auslösendes Ereignis: Anwender gibt eine falsche Kombination aus Benutzernamen und Passwort ein.
+
+Ablaufschritte:
+	Standard:
+		- Kombination aus Benutzername und Passwort überprüfen.
+		- Meldung ausgeben, dass die eingegebene Kombination nicht richtig ist.
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

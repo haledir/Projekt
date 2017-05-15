@@ -1,0 +1,20 @@
+# Use-Case Einstellungen ändern
+
+Ziel: eMail oder Passwort ändern
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: Anwender muss registriert und eingeloggt sein.
+Auslösendes Ereignis: Klick auf Einstellungen.
+
+Ablaufschritte:
+	Standard:
+		- Einstellungen öffnen
+		- Neue Werte eingeben
+		- Parallel neue Werte überprüfen
+		- Klick auf "Speichern"
+		- Werte an RESTApi schicken und im Benutzerkonto aktualisieren
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!

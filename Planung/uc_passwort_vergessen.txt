@@ -1,0 +1,24 @@
+# Use-Case Passwort vergessen
+
+Ziel: Anwender erhält ein neues Passwort, weil er sein eigentliches vergessen hat.
+Akteur: 
+	primär: Anwender
+	sekundär: Plattform, RESTApi
+
+Vorbedingung: Anwender muss registriert sein.
+Auslösendes Ereignis: Klick auf "Passwort vergessen".
+
+Ablaufschritte:
+	Standard:
+		- Weiterleitung auf "Passwort vergessen"-Seite
+		- eMail und Matrikelnummer ausfüllen
+		- Passwort zurücksetzen drücken
+		- Prüfung von eMail und Matrikelnummer
+		- Neues Passwort generieren
+		- Neues Passwort setzen
+		- Neues Passwort zusenden
+		
+	Alternativen:
+		- Es gibt Alternativen, welche im ersten Prototyp aber nicht berücksichtigt werden!
+		- eMail und Matrikelnummer stimmen nicht überein
+		- ...
