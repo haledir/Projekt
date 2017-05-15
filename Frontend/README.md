@@ -1,3 +1,4 @@
+# Frontend (HTML+CSS)
 Frontend Template erstellt
 
 In dem CSS-Ordner sind die CSS Dateien drin, welche für die index.html benötigt werden. Lucy soll nachher in den JS-Ordner eingefügt werden.

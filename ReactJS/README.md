@@ -1,3 +1,4 @@
+# ReactJS-App alias Lucy
 ReactJS erstellt
 Ich wollte das nicht my-app nennen, deswegen heiﬂt unsere ReactJS-App jetzt Lucy.
 
