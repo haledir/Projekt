@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Lucy - Automatische JAVA Korrektur</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <body>
 
-<!-- Side Navigation -->
+<!-- Side Navigation
 <nav class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left w3-center" style="display:none" id="mySidebar">
   <h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
   <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
@@ -17,15 +17,17 @@
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <a href="#" class="w3-bar-item w3-button">Link 4</a>
 </nav>
+-->
 
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> 
   <div class="w3-center">
-  <h4>BEAUTIFUL RESPONSIVE WEB SITES</h4>
-  <h1 class="w3-xxxlarge w3-animate-bottom">BUILT WITH W3.CSS</h1>
+  <h4>Lerne einfach und schnell Java mit</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Lucy</h1>
     <div class="w3-padding-32">
-      <button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">LEARN W3.CSS</button>
+      <button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="document.getElementById('id02').style.display='block'" style="font-weight:900;">Anmelden</button>
+      <button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Registrieren</button>
     </div>
   </div>
 </header>
@@ -36,12 +38,53 @@
       <header class="w3-container w3-theme"> 
         <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
-        <h4>Oh snap! We just showed you a modal..</h4>
-        <h5>Because we can <i class="fa fa-smile-o"></i></h5>
+        <h4>Anmelden oder registieren.</h4>
       </header>
       <div class="w3-padding">
-        <p>Cool huh? Ok, enough teasing around..</p>
-        <p>Go to our <a class="w3-btn" href="/w3css/default.asp">W3.CSS Tutorial</a> to learn more!</p>
+        <form class="w3-container w3-card-4">
+		  <div class="w3-section">      
+			<input class="w3-input" type="text" required>
+			<label>Benutzername</label>
+		  </div>
+		  <div class="w3-row">
+			  <div class="w3-half">
+				  <div class="w3-section">      
+					<input class="w3-input" type="text" required>
+					<label>Vorname</label>
+				  </div>
+			  </div>
+			  <div class="w3-half">
+				  <div class="w3-section">      
+					<input class="w3-input" type="text" required>
+					<label>Nachname</label>
+				  </div>
+			  </div>
+		  </div>
+		  <div class="w3-section">      
+			<input class="w3-input" type="text" required>
+			<label>Matrikelnummer</label>
+		  </div>
+		  <div class="w3-section">      
+			<input class="w3-input" type="email" required>
+			<label>E-Mail</label>
+		  </div>
+		  <div class="w3-section">      
+			<input class="w3-input" type="email" required>
+			<label>E-Mail wiederholen</label>
+		  </div>
+		  <div class="w3-section">      
+			<input class="w3-input" type="password" required>
+			<label>Passwort</label>
+		  </div>
+		  <div class="w3-section">      
+			<input class="w3-input" type="password" required>
+			<label>Passwort wiederholen</label>
+		  </div>
+		  </div>		  
+		  <div class="w3-padding">
+		  <button type="button" class="w3-button w3-theme" id="btnRegister">Registrieren</button>
+		  </div>
+		</form>
       </div>
       <footer class="w3-container w3-theme">
         <p>Modal footer</p>
