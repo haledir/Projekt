@@ -1,26 +1,15 @@
-# Slim Framework 3 Skeleton Application
+# Lucy's RESTful API
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Um die API nutzen zu können, muss man folgendes beachten:
+- Content-Type muss im http header auf application/json gestellt sein
+- Basic Auth ist aktiv mit Nutzername und Passwort
+- Http Header muss auch Authorization auf "Basic cm9vdDp0MDBy" gestellt haben
+- Bei einem Update müssen nur die zu aktualisierenden Werte eingetragen werden
+- Alle Methoden sind der REST_API.xslx zu entnehmen
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
-
-## Install the Application
-
-Run this command from the directory in which you want to install your new Slim Framework application.
-
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
-
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can also run this command. 
-
-	php composer.phar start
-
-Run this command to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+Die API kann man am besten mit dem Chrome-AddOn Postman testen. Um sie ans Laufen zu bringen muss man folgendes tun:
+- xampp installieren
+- Apache & MySQL starten
+- HeidiSQL installieren
+- db_aufbau_skript.sql einlesen
+- copy.cmd ausführen oder die .htaccess, index.php und den src-Ordner manuell in den htdocs von xampp kopieren

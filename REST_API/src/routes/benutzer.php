@@ -2,7 +2,7 @@
 // Routes
 
 // Retrieve user with matnr 
-$app->get('/user/[{matnr}]', function ($request, $response, $args) {
+$app->get('/user/{matnr}', function ($request, $response, $args) {
 	 $sth = $this->db->prepare("SELECT * FROM benutzer WHERE matnr=:matnr");
 	$sth->bindParam("matnr", $args['matnr']);
 	$sth->execute();
@@ -34,7 +34,7 @@ $app->post('/user', function ($request, $response) {
 });
 
 // Delete user with matnr 
-$app->delete('/user/[{matnr}]', function ($request, $response, $args) {
+$app->delete('/user/{matnr}', function ($request, $response, $args) {
 	 $sth = $this->db->prepare("DELETE FROM benutzer WHERE matnr=:matnr");
 	$sth->bindParam("matnr", $args['matnr']);
 	$sth->execute();        
@@ -42,7 +42,7 @@ $app->delete('/user/[{matnr}]', function ($request, $response, $args) {
 });
 
 // update user with matnr 
-$app->put('/user/[{matnr}]', function ($request, $response, $args) {
+$app->put('/user/{matnr}', function ($request, $response, $args) {
         $input = $request->getParsedBody();
 		$sql = "UPDATE benutzer SET ";
 		$index = 0;
