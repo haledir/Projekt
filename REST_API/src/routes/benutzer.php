@@ -1,13 +1,13 @@
 <?php
 // Routes
 
-// Retrieve todo with id 
-$app->get('/user/[{id}]', function ($request, $response, $args) {
-	 $sth = $this->db->prepare("SELECT * FROM benutzer WHERE matnr=:id");
-	$sth->bindParam("id", $args['id']);
+// Retrieve user with matnr 
+$app->get('/user/[{matnr}]', function ($request, $response, $args) {
+	 $sth = $this->db->prepare("SELECT * FROM benutzer WHERE matnr=:matnr");
+	$sth->bindParam("matnr", $args['matnr']);
 	$sth->execute();
-	$todos = $sth->fetchObject();
-	return $this->response->withJson($todos);
+	$erg = $sth->fetchObject();
+	return $this->response->withJson($erg);
 });
 	
 // Hash a new password for storing in the database.
@@ -30,6 +30,36 @@ $app->post('/user', function ($request, $response) {
 	$sth->bindParam("nachname", $input['nachname']);
 	$sth->bindParam("email", $input['email']);
 	$sth->execute();
-	$input['matnr'] = $this->db->lastInsertId();
 	return $this->response->withJson($input);
+});
+
+// Delete user with matnr 
+$app->delete('/user/[{matnr}]', function ($request, $response, $args) {
+	 $sth = $this->db->prepare("DELETE FROM benutzer WHERE matnr=:matnr");
+	$sth->bindParam("matnr", $args['matnr']);
+	$sth->execute();        
+	return true;
+});
+
+// update user with matnr 
+$app->put('/user/[{matnr}]', function ($request, $response, $args) {
+        $input = $request->getParsedBody();
+		$sql = "UPDATE benutzer SET ";
+		$index = 0;
+		foreach ($input as $key => $value){
+			if($index == 0){
+				$sql = $sql . "{$key}='{$value}'";
+				$index++;
+			} else {				
+				$sql = $sql . ", {$key}='{$value}'";
+				$index++;
+			}
+		}
+		$sql = $sql . " where matnr=:matnr";
+		//echo $sql;
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam("matnr", $args['matnr']);
+        $sth->execute();
+        $input['matnr'] = $args['matnr'];
+        return $this->response->withJson($input);
 });
