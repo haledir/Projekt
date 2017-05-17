@@ -1,0 +1,11 @@
+{
+  "schritt1": "Erstelle eine Variable flaeche vom Typ float.",
+  "schritt2": "Erstelle eine Variable umfang vom Typ float.",
+  "schritt3": "Erstelle eine Variable pi vom Typ float.",
+  "schritt4": "Setze den Wert der Variablen pi auf 3.141. Beachte das java Dezimalzahlen von Kommazahlen mithilfe des Buchstabens f hinter der Zahl unterscheidet. (Beispiel: pi = 3.141f)",
+  "schritt6": "Erstelle eine Variable radius mit beliebigen Inhalt, achte auch hier bei der Nutzung von Kommazahlen auf die korrekte Schreibweise!",
+  "schritt7": "Berechne den Flächeninhalt wie folgt flaeche=pi*(radius*radius);",
+  "schritt8": "Berechne den Umfang wie folgt umfang=2*pi*radius;",
+  "schritt9": "Erstelle eine Ausgabe der berechneten Fläche. Hierfür wird die Funktion System.out.println() verwendet. Beachte hierbei, dass Wörter in Anführungszeichen geschrieben werden und Variablen mit Hilfe des + Operators hinzugefügt werden.",
+  "schritt11": "Erstelle eine Ausgabe des berechneten Umfangs."
+}

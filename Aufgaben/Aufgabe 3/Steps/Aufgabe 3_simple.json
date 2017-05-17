@@ -1,0 +1,12 @@
+{
+  "schritt1": "Importiere die Bibliothek java.util.*, hierfür muss in die erste Zeile des Editors folgende Zeile geschrieben werden: import java.util.*;",
+  "schritt2": "Erstelle die Variablen zahl1, zahl2 und zahl3 vom Typ integer und weise ihnen den Wert 0 zu. Dies geschieht über die folgende Eingabe: int zahl1=0;",
+  "schritt3": "Erstelle eine Scanner Variable sc, damit im späteren die Zahlen von der Tastatur eingelesen werden können. Diese Variable wird wie folgt erstellt: Scanner sc = new Scanner(System.in); ",
+  "schritt4": "Schreibe mit Hilfe der System.out.println() Funktion eine Aufforderung eine ganze Zahl einzugeben.",
+  "schritt5": "Weise der Variablen zahl1 die eingegeben Zahl zu. Dies geschieht wie folgt: zahl1 = sc.nextInt();",
+  "schritt6": "Wiederhole die Schritte 4 und 5 für die Variablen zahl2 und zahl3.",
+  "schritt7": "Schreibe nun die erste if-Anweisung. Hierbei soll geprüft werden, ob die zahl2 die mittlere zahl ist. Wenn ja soll diese ausgegeben werden. Die if-anweisung sieht wie folgt aus: if(zahl1<zahl2 && zahl2<zahl3 || zahl3<zahl2 && zahl2<zahl1). Beachte das das Ausgeben mit der Funktion System.out.println() mit {} Klammern umschlossen wird.",
+  "schritt8": "Wenn die Variable zahl2 nicht die Mittlere Zahl ist, muss weiter geprüft werden. Demnach wird nun eine else if-Anweisung benötigt. Die Anweisung hier sieht wie folgt aus: else if(zahl2<zahl1 && zahl1<zahl3 || zahl3<zahl1 && zahl1<zahl2). Hierbei wird geprüft ob zahl1 die mittlere Zahl ist.",
+  "schritt9": "Wenn auch diese Zahl nicht die Mittlere ist, muss die Variable zahl3 geprüft werden. Auch dies geschieht über eine else if-Anweisung. Der Code hierfür lautet: else if(zahl1<zahl3 && zahl3<zahl2 || zahl2<zahl3 && zahl3<zahl1) ",
+  "schritt10": "Nachdem alle zahlen geprüft wurden und jeweils eine System.out.println() Funktion in die {} Klammern der if / else if-Anweisungen geschrieben wurde, kann das Programm ausgeführt werden."
+}

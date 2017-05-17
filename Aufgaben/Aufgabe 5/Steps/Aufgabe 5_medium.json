@@ -1,0 +1,10 @@
+{
+  "schritt1": "Importiere die Java-Bibliothek java.util.*",
+  "schritt2": "Erstelle die Integer Variablen ergebnis und tage mit dem Wert 0.",
+  "Schritt3": "Erstelle die Scanner Variable sc um die Tage im Januar von der Tastatur einzulesen.",
+  "Schritt4": "Schreibe eine Eingabaufforderung der Tage im Januar und weise diese der Variablen tage zu.",
+  "schritt5": "Berechne die Sekunden im Januar.",
+  "schritt6": "Gebe das Ergebnis aus."
+  
+  
+}
