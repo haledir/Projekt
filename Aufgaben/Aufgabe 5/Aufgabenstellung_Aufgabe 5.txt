@@ -1,0 +1,2 @@
+Schreiben Sie ein Programmm, das die Anzahl von Sekunden im Monat Januar
+berechnet.
