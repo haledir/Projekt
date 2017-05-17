@@ -1,10 +1,13 @@
 <?php
 // Routes
+require __DIR__ . '/routes/aufgaben.php';
+require __DIR__ . '/routes/benutzer.php';
+require __DIR__ . '/routes/benutzer_aufgaben.php';
+require __DIR__ . '/routes/fortschritt.php';
+require __DIR__ . '/routes/schritte.php';
+require __DIR__ . '/routes/status.php';
 
-$app->get('/[{name}]', function ($request, $response, $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
-
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
+// Retrieve todo with id 
+$app->get('/get', function () {
+	return "hello World";
 });
