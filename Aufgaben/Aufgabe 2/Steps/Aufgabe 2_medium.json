@@ -1,0 +1,6 @@
+{
+  "schritt1": "Erstellen Sie die Variablen ergebnis, kapital mit dem Wert 10000, zins mit dem Wert 5, tage mit dem Wert 360 und jahr mit dem Wert tage/360 vom Typ float.",
+  "schritt2": "Berechnen Sie das Ergebnis mit der einfachen Zins Rechnung (ohne zinses zins).",
+  "schritt3": "Geben Sie das berechnete Ergebnis mithilfe der System.out.println(); Funktion aus."
+  
+}

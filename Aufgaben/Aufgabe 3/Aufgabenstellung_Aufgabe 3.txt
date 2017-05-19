@@ -1,0 +1,2 @@
+Konzipieren und realisieren Sie ein Programm, das bei 3 eingegebenen ganzen
+Zahlen die „mittlere“ berechnet (im Fachbegriff spricht man hier vom „Median“).

@@ -1,0 +1,13 @@
+In einem weiteren Programm soll eine stark vereinfachte Version des beliebten
+Würfelspiels „Mäxchen“ realisiert werden.
+
+Hierbei wird mit 2 Würfeln gewürfelt. Als Ergebnis werden die beiden Zahlen
+ausgegeben – die größere steht immer vorne (z. B. 3 und 5 ergibt 53 Punkte).
+
+Es gibt einige Besonderheiten, die im Programm berücksichtigt werden sollen:
+
+Wird eine 1 und eine 2 gewürfelt, so nennt man diese Kombination „Mäxchen“. Sie wird mit 1000 Punkten gewertet.
+Werden 2 gleiche Zahlen gewürfelt, so spricht man ein einem „Pasch“. In diesem
+Fall wird der gewürfelte Wert mit 100 multipliziert.
+
+Das Programm soll das Ergebnis eines einzigen Wurfs mit 2 Würfeln ausgeben.

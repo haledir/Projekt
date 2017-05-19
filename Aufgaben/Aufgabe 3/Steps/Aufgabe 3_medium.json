@@ -1,0 +1,6 @@
+{
+  "schritt1": "Importiere die Java-Bibliothek java.util.*",
+  "schritt2": "Erstelle die Integer Variablen zahl1, zahl2 und zahl3. Weise diesen Variablen direkt den Wert 0 zu.",
+  "schritt3": "Erstelle eine Scanner Variable sc. Lese mithilfe dieser 3 Integer Werte von der Tastatur ein und weise sie den Variablen zahl1, zahl2 und zahl3 zu.",
+  "schritt4": "Schreibe nun entsprechende if /else if-Anweisungen, um die Mittlere Zahl auszugeben."
+}

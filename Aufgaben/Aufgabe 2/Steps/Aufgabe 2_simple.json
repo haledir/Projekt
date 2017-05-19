@@ -1,0 +1,9 @@
+{
+  "schritt1": "Erstellen Sie die Variable ergebnis vom Typ float. (float ergebnis;)",
+  "schritt2": "Erstellen Sie die Variable kapital vom Typ float und weisen dieser den Wert 10000 zu. (float kapital = 10000;)",
+  "schritt3": "Erstellen Sie die Variable zins vom Typ float und weisen dieser den Wert 5 zu.",
+  "schritt4": "Erstellen Sie die Variable tage vom Typ float und weisen dieser den Wert 360 zu.",
+  "schritt5": "Erstellen Sie die Variable jahr vom Typ float und belegen Sie diese wie folgt: float jahr = tage/360;",
+  "schritt6": "Berechnen Sie den Wert für die Variable ergebnis wie folgt: ergebnis = kapital + (jahr * (zins/100) * kapital).",
+  "schritt7": "Geben Sie das Ergebnis mithilfe der Funktion System.out.println() aus."
+}

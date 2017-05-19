@@ -1,0 +1,6 @@
+{
+  "schritt1": "Erstelle die Variablen flaeche, umfang, pi und radius vom Typ float. Wobei pi den Wert 3.141 und radius einen beliebigen Wert zugewiesen bekommt.",
+  "schritt2": "Berechne den Wert der Variable flaeche mithilfe der Formel: pi*(radius*radius).",
+  "schritt3": "Berechne den Wert der Variable umfang mithilfe der Formel: 2*pi*radius.",
+  "schritt4": "Gebe die beiden errechneten Werte mit Hilfe der Funktion System.out.println() aus."
+}
