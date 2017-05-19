@@ -3,7 +3,7 @@
   "schritt2": "Erstelle die Integer Variable ergebnis mit dem Wert 0. (int ergebnis=0;)",
   "schritt3": "Erstelle die Integer Variable tage mit dem Wert 0. (int tage= 0;)",
   "Schritt4": "Erstelle die Scanner Variable sc um die Tage im Januar von der Tastatur einzulesen. (Scanner sc = new Scanner(System.in);)",
-  "Schritt5": "Schreibe eine Eingabaufforderung der Tage im Januar mithilfe der System.out.println() Funktion."
+  "Schritt5": "Schreibe eine Eingabaufforderung der Tage im Januar mithilfe der System.out.println() Funktion.",
   "schritt6": "Weise der Variablen tage die eingegebene Zahl zu. (tage = sc.nextInt();)",
   "schritt7": "Berechne das Ergebnis mit folgendem Code: ergebnis = tage*24*60*60;",
   "schritt8": "Gebe das Ergebnis mithilfe der System.out.println() Funktion aus."
