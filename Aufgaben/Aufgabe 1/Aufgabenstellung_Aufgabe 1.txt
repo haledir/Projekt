@@ -1,0 +1,7 @@
+Schreiben Sie ein Programm, das für einen beliebigen Kreis Fläche und Umfang berechnet. 
+Der Radius des Kreises soll im Programm vorgegeben werden.
+
+Berechnungsvorschriften: Fläche = PI * radius2;
+Umfang = 2 * PI * radius;
+
+Hinweise: Belegen Sie PI selbst mit einem Wert (z. B. 3.141).
