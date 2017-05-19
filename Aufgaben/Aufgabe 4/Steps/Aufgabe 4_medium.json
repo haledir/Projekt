@@ -1,7 +1,7 @@
 {
   "schritt1": "Importiere die Java-Bibliothek java.util.*",
   "schritt2": "Erstelle die Integer Variablen zahl1 und zahl2 und weise ihnen einen Zufälligen Wert von 1-6 zu. Erstelle außerdem die Integer Variable Ergebnis mit dem Wert 0.",
-  "schritt3": "Prüfe ob die Zahlen 2 und 1 gewürfelt wurden und weise in diesem Fall dem ergebnis den Wert 1000 zu. Gebe Anschließend die Variable ergebnis aus."
+  "schritt3": "Prüfe ob die Zahlen 2 und 1 gewürfelt wurden und weise in diesem Fall dem ergebnis den Wert 1000 zu. Gebe Anschließend die Variable ergebnis aus.",
   "schritt4": "Überprüfe anschließend ob ein Pasch gewürfelt wurde. Hierbei wird die Summe der beiden würfel addiert und mit 100 multipliziert. Gebe auch hier anschließend das ergebnis aus.",
   "schritt5": "Überprüfe zuletzt den Fall das weder 2 und 1 noch ein Pasch gewürfelt wurde. Gebe hier die beiden Zahlen der größe nach aus."
   
