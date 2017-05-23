@@ -10,3 +10,7 @@
 .lucy-cap{
   font-size: 120px
 }
+
+.lucy-repeat-failure{
+  background-color: rgba(255, 0, 0, 0.11);
+}
