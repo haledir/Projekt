@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<title>Lucy - Automatische JAVA Korrektur</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>LUCY</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout"><i class="fa fa-sign-out"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Einstellungen"><i class="fa fa-cog"></i></a>
+ </div>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">Dashboard</h4>
+         <p class="w3-center"><img src="./img/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> Name</p>
+         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> E-Mail</p>
+         <p><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i> Fortschritt</p>
+        </div>
+      </div>
+    
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m9">
+    
+      <div class="w3-row">
+
+        <div class="w3-row-padding w3-center">
+          <div class="w3-half">
+            <div class="w3-card-2 w3-container" style="min-height:460px">
+              <h3>Anfängerkurs</h3><br>
+              <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+              <p>Du bist neu auf der Insel?</p>
+              <p>Fortschritt:</p>
+              <p><div class="w3-light-grey w3-round-xlarge">
+                <div id="prog_Anfaenger" class="w3-container w3-round-xlarge w3-theme w3-padding" style="width:90%">90%</div>
+                </div>
+              </p>
+              <button type="button" class="w3-button w3-blue-grey w3-margin-top" id="btnA_Start">Kurs Starten</button>
+            </div>
+          </div>
+
+          <div class="w3-half">
+            <div class="w3-card-2 w3-container" style="min-height:460px">
+              <h3>Fortgeschrittenkurs</h3><br>
+              <i class="fa fa-code w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+              <p>Du hast schon Erfahrung auf der Insel?</p>
+              <p>Fortschritt:</p>
+              <p>
+                <div class="w3-light-grey w3-round-xlarge">
+                  <div id="prog_Fortgeschritten" class="w3-container w3-round-xlarge w3-theme w3-padding" style="width:20%">20%</div>
+                </div>
+              </p>
+              <button type="button" class="w3-button w3-blue-grey w3-margin-top" id="btnF_Start">Kurs Starten</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="w3-row w3-margin-top">
+
+          <div class="w3-row-padding w3-center">
+            <div class="w3-half">
+              <div class="w3-card-2 w3-container" style="min-height:460px">
+                <h3>Expertenkurs</h3><br>
+                <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+                <p>Du bist neu auf der Insel?</p>
+                <p>Fortschritt:</p>
+                <p>
+                  <div class="w3-light-grey w3-round-xlarge">
+                    <div id="prog_Experte" class="w3-container w3-round-xlarge w3-theme w3-padding" style="width:1%">&nbsp;</div>
+                  </div>
+                </p>
+                <button type="button" class="w3-button w3-blue-grey w3-margin-top" id="btnE_Start">Kurs Starten</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    <!-- End Middle Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-dark">
+  <h3>Lucy - Automatische Java Korrektur</h3>
+  <p>Powered by WWI 2014 G</p>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme w3-padding">Go To Top</span>&nbsp;
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+  <p>Entwickelt von&nbsp;&nbsp;<div class="w3-btn w3-theme">Laura Goldfuss</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Jean-Marie Kern</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Michael Möllmann</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Thore Pils</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Christian Schuster</div></p>
+</footer>
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Progress Bars
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
