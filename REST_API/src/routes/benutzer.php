@@ -9,7 +9,24 @@ $app->get('/user/{matnr}', function ($request, $response, $args) {
 	$erg = $sth->fetchObject();
 	return $this->response->withJson($erg);
 });
-	
+
+// Retrieve login user
+$app->post('/user/login', function ($request, $response, $args) {
+    $input = $request->getParsedBody();
+    $sth = $this->db->prepare("SELECT benutzername, passwort FROM benutzer WHERE benutzername=:benutzername");
+    $sth->bindParam("benutzername", $input['benutzername']);
+    $sth->execute();
+    $erg = $sth->fetchObject();
+    $isPasswordCorrect = password_verify($input['passwort'], $erg->passwort);
+    if($isPasswordCorrect)
+    {
+        $return = array("login"=>true);
+    } else {
+        $return = array("login"=>false);
+    }
+    return $this->response->withJson($return);
+});
+
 // Hash a new password for storing in the database.
 // The function automatically generates a cryptographically safe salt.
 //$hashToStoreInDb = password_hash($password, PASSWORD_BCRYPT);
