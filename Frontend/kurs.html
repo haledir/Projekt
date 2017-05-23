@@ -6,56 +6,93 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <body>
 
-<!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
-  <h4>Lerne einfach und schnell Java mit</h4>
-  <h1 class="w3-xxxlarge w3-animate-bottom">Lucy</h1>
-    <div class="w3-padding-32">
-      <button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="document.getElementById('id02').style.display='block'" style="font-weight:900;">Anmelden</button>
-      <button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Registrieren</button>
-    </div>
-  </div>
+<!-- Header, der fürs Layout benötigt wird -->
+<header class="w3-container">
+    <h4>&nbsp;</h4>
 </header>
 
-<!-- ACE Editor -->
-<div class="w3-center">
-  <h2>Aufgabe und Editor</h2>
-  <p class="w3-large">Hier folgt nun die Aufgabe und der Editor</p>
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>LUCY</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout"><i class="fa fa-sign-out"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Einstellungen"><i class="fa fa-cog"></i></a>
+    </div>
 </div>
-<br>
 
-<div class="w3-row w3-border w3-padding">
-  <div class="w3-third w3-container w3-blue w3-border" style="height: 555px">
-    <h5>Aufgabe</h5>  
-    <p>Auf dieser Seite wird die Aufgabe zu sehen sein</p>
-    <p>Bla bla</p>
-  </div>
-  <div class="w3-container w3-twothird">
-	  <div class="w3-bar w3-blue-grey">
-		  <button class="w3-bar-item w3-button testbtn" onclick="openCity(event,'main')">main.java</button>
-	  </div>
-		<div id="main" class="w3-container w3-margin-top city w3-animate-opacity" style="margin-left: -16px">
-		  <div id="editor" style="height: 500px">public class MyFirstJavaProgram {
-		   /* This is my first java program.
-			* This will print 'Hello World' as the output
-			*/
-
-		   public static void main(String []args) {
-			  System.out.println("Hello World"); // prints Hello World
-		   }
-		}</div>
-		</div>
-  </div>
+<div class="w3-row-padding w3-center w3-margin-top">
+    <h2>Aufgabe und Editor</h2>
+    <p class="w3-large">Hier folgt nun die Aufgabe und der Editor</p>
+    <br>
 </div>
-<br>
 
-
-<!-- Leerzeile, fürs visuelle -->
+<!-- Page Container -->
 <div class="w3-container">
-<br>
+    <!-- ACE Editor -->
+    <div class="w3-row w3-border w3-padding">
+      <div class="w3-third w3-container w3-blue" style="height: 555px">
+        <h5>Aufgabe</h5>
+        <p>Auf dieser Seite wird die Aufgabe zu sehen sein</p>
+        <p>Bla bla</p>
+      </div>
+      <div class="w3-container w3-twothird">
+          <div class="w3-bar w3-blue-grey">
+              <button class="w3-bar-item w3-button active_btn w3-theme-dark" onclick="openJavaFile(event, 'main.java')">main.java</button>
+              <button class="w3-bar-item w3-button active_btn" onclick="openJavaFile(event, 'side.java')">side.java</button>
+              <button class="w3-bar-item w3-button active_btn" onclick="openJavaFile(event, 'new.java')">new.java</button>
+          </div>
+
+          <!-- main.java -->
+          <div id="main.java" class="java_file">
+              <div id="editor_main" class="w3-margin-top" style="height: 500px">public class MyFirstJavaProgram {
+    /* This is my first java program.
+    * This will print 'Hello World' as the output
+    */
+
+    public static void main(String []args) {
+        System.out.println("Hello World"); // prints Hello World
+    }
+}</div>
+          </div>
+
+          <!-- side.java -->
+          <div id="side.java" class="java_file" style="display:none">
+              <div id="editor_side" class="w3-margin-top" style="height: 500px">public class MyFirstJavaProgram {
+    /* Side Klasse zum testen
+    * This will print 'Hello World' as the output
+    */
+
+    public static void main(String []args) {
+        System.out.println("Hello World"); // prints Hello World
+    }
+}</div>
+          </div>
+
+          <!-- new.java -->
+          <div id="new.java" class="java_file" style="display:none">
+              <div id="editor_new" class="w3-margin-top" style="height: 500px">public class MyFirstJavaProgram {
+    /* Neue Klasse zum testen
+    * This will print 'Hello World' as the output
+    */
+
+    public static void main(String []args) {
+        System.out.println("Hello World"); // prints Hello World
+    }
+}</div>
+          </div>
+
+          <!-- Check und Reset Button -->
+          <div class="w3-row w3-margin-top w3-right">
+              <button class="w3-bar-item w3-theme w3-button">Check Code</button>
+              <button class="w3-bar-item w3-theme w3-button">Reset</button>
+          </div>
+      </div>
+    </div>
+    <br>
 </div>
 
 <!-- Footer -->
@@ -69,91 +106,40 @@
   </div>
   <p>Entwickelt von&nbsp;&nbsp;<div class="w3-btn w3-theme">Laura Goldfuss</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Jean-Marie Kern</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Michael Möllmann</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Thore Pils</div>&nbsp;&nbsp;<div class="w3-btn w3-theme">Christian Schuster</div></p>
 </footer>
-<!-- Skript für ACE -->
-<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-	var editor = ace.edit("editor");
-	editor.setTheme("ace/theme/idle_fingers");
-	editor.getSession().setMode("ace/mode/java");
-</script>
 
-<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+
+<!-- Script Tabs  und ACE -->
 <script>
-// Side navigation
-function w3_open() {
-    var x = document.getElementById("mySidebar");
-    x.style.width = "100%";
-    x.style.fontSize = "40px";
-    x.style.paddingTop = "10%";
-    x.style.display = "block";
-}
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-}
+// Main Editor
+var editor_main = ace.edit("editor_main");
+editor_main.setTheme("ace/theme/idle_fingers");
+editor_main.getSession().setMode("ace/mode/java");
+
+// Side Editor
+var editor_side = ace.edit("editor_side");
+editor_side.setTheme("ace/theme/idle_fingers");
+editor_side.getSession().setMode("ace/mode/java");
+
+// New Editor
+var editor_new = ace.edit("editor_new");
+editor_new.setTheme("ace/theme/idle_fingers");
+editor_new.getSession().setMode("ace/mode/java");
 
 // Tabs
-function openCity(evt, cityName) {
-  var i;
-  var x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  var activebtn = document.getElementsByClassName("testbtn");
-  for (i = 0; i < x.length; i++) {
-      activebtn[i].className = activebtn[i].className.replace(" w3-theme-dark", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-theme-dark";
-}
-
-var mybtn = document.getElementsByClassName("testbtn")[0];
-mybtn.click();
-
-// Accordions
-function myAccFunc(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
+function openJavaFile(evt, fileName) {
+    var i;
+    var x = document.getElementsByClassName("java_file");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
     }
-}
-
-// Slideshows
-var slideIndex = 1;
-
-function plusDivs(n) {
-slideIndex = slideIndex + n;
-showDivs(slideIndex);
-}
-
-function showDivs(n) {
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  x[slideIndex-1].style.display = "block";  
-}
-
-showDivs(1);
-
-// Progress Bars
-function move() {
-  var elem = document.getElementById("myBar");   
-  var width = 1;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width == 100) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%'; 
-      elem.innerHTML = width * 1  + '%';
+    var activebtn = document.getElementsByClassName("active_btn");
+    for (i = 0; i < x.length; i++) {
+        activebtn[i].className = activebtn[i].className.replace(" w3-theme-dark", "");
     }
-  }
+    document.getElementById(fileName).style.display = "block";
+    evt.currentTarget.className += " w3-theme-dark";
 }
+
 </script>
 
 </body>
