@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Login from './Login/Login.js';
 import Cookies from 'universal-cookie';
 import Dashboard from './Dashboard/Dashboard.js';
+import Kurs from './Kurs/Kurs.js';
 import $ from 'jquery';
 
 class App extends Component {
@@ -41,7 +42,7 @@ class App extends Component {
     }
     render() {
         if(this.state.loggedIn){
-            return <Dashboard matNr={this.cookies.get("matNr")} signOutHandler={this.signOutHandler.bind(this)}/>
+            return <Kurs />
         } else {
             return <Login signInHandler={this.signInHandler.bind(this)}/>
         }
