@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import LoginForm from './LoginForm.js';
 import RegistryForm from './RegistryForm.js';
-import Footer from '../Footer.js';
 import './Login.css';
 
 class Login extends Component {
@@ -29,7 +28,7 @@ class Login extends Component {
         loginScreenStyle.display = this.state.loginForm ? "block" : "none";
         signUpScreenStyle.display = this.state.signUpForm ? "block" : "none";
         return (
-            <div className="App">
+            <div className="body">
                 <header className="w3-container w3-theme w3-padding" id="myHeader">
                     <div className="w3-center">
                         <h4>Lerne einfach und schnell Java mit</h4>
@@ -105,10 +104,8 @@ class Login extends Component {
                             <p>Keinerlei Hilfestellung</p>
                         </div>
                     </div>
-
                 </div>
-                    <Footer />
-                </div>
+            </div>
         );
     }
 }

@@ -40,8 +40,7 @@ class RegitryForm extends Component {
                 nachname: this.state.signUp.nachname,
                 email: this.state.signUp.email
             };
-            $.ajax
-            ({
+            $.ajax({
                 method: "POST",
                 url: "http://localhost/Projekt/REST_API/user",
                 headers: {
@@ -50,7 +49,7 @@ class RegitryForm extends Component {
                 dataType: 'json',
                 data: benutzer
             }).done(function( data ) {
-
+                console.log(data);
             });
         }
     };

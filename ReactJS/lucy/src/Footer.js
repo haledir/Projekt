@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 class Footer extends Component {
     render() {
         return (
-            <div style={{textAlign:'center'}}>
+            <div className="lucy-footer" style={{textAlign:'center'}}>
                 <div className="w3-container">
                     <br />
                 </div>
@@ -19,7 +19,7 @@ class Footer extends Component {
                             </span>
                         </a>
                     </div>
-                    <p>Entwickelt von&nbsp;&nbsp;
+                    <div>Entwickelt von&nbsp;&nbsp;
                         <div className="w3-btn w3-theme">Laura Goldfuss</div>
                         &nbsp;&nbsp;
                         <div className="w3-btn w3-theme">Jean-Marie Kern</div>
@@ -29,7 +29,7 @@ class Footer extends Component {
                         <div className="w3-btn w3-theme">Thore Pils</div>
                         &nbsp;&nbsp;
                         <div className="w3-btn w3-theme">Christian Schuster</div>
-                    </p>
+                    </div>
                 </div>
             </div>
         )

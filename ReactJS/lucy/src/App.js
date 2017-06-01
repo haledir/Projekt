@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import Login from './Login/Login.js';
 import Cookies from 'universal-cookie';
-import Dashboard from './Dashboard/Dashboard.js';
-import Kurs from './Kurs/Kurs.js';
+import UserHome from './UserHome/UserHome.js';
 import $ from 'jquery';
+import Footer from "./Footer";
+
+import './index.css'
 
 class App extends Component {
     cookies;
@@ -41,11 +43,18 @@ class App extends Component {
         });
     }
     render() {
+        let body = {};
         if(this.state.loggedIn){
-            return <Kurs />
+            body = <UserHome signOutHandler={this.signOutHandler.bind(this)} matNr={this.cookies.get('matNr')}/>;
         } else {
-            return <Login signInHandler={this.signInHandler.bind(this)}/>
+            body = <Login signInHandler={this.signInHandler.bind(this)}/>;
         }
+        return (
+            <div>
+                {body}
+                <Footer/>
+            </div>
+        )
     }
 }
 
