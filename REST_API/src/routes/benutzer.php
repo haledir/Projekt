@@ -3,7 +3,7 @@
 
 // Retrieve user with matnr 
 $app->get('/user/{matnr}', function ($request, $response, $args) {
-	 $sth = $this->db->prepare("SELECT * FROM benutzer WHERE matnr=:matnr");
+	 $sth = $this->db->prepare("SELECT matnr, benutzername, vorname, nachname, email FROM benutzer WHERE matnr=:matnr");
 	$sth->bindParam("matnr", $args['matnr']);
 	$sth->execute();
 	$erg = $sth->fetchObject();
