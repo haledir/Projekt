@@ -31,6 +31,7 @@ require __DIR__ . '/src/middleware.php';
 
 // Register routes
 require __DIR__ . '/src/routes.php';
+require __DIR__ . '/src/check_code.php';
 
 // Run app
 $app->run();
