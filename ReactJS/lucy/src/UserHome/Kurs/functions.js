@@ -1,10 +1,9 @@
 import $ from 'jquery';
-import 'beautifier.js';
+import js_beautify from 'js-beautify';
+
 
 // actionscript
-function FormatJS() {
-    editorResult.getSession().setUseWrapMode(false);
-    var oldformat = editorAce.getValue();
+ function FormatJS(oldformat) {
     if (oldformat.trim().length > 0) {
         var code = js_beautify(oldformat, {
             'indent_size' : 1,
@@ -16,9 +15,7 @@ function FormatJS() {
     }
 }
 
-function MinifyJS() {
-    editorResult.getSession().setUseWrapMode(true);
-    var oldformat = editorAce.getValue();
+ function MinifyJS(oldformat) {
     if (oldformat.trim().length > 0) {
 
         $.ajax({
@@ -30,16 +27,22 @@ function MinifyJS() {
             },
             success : function(response) {
                 try {
-                    editorResult.setValue(response);
+                    return response;
 
                 } catch (e) {
-                    openErrorDialog("invalid Input");
+
                 }
             },
             error : function(e, s, a) {
-                openErrorDialog("Failed Minifining=" + s);
+
 
             }
         });
     }
 }
+
+function cube(x) {
+    return x * x * x;
+}
+const foo = Math.PI + Math.SQRT2;
+export { FormatJS, MinifyJS };

@@ -2,31 +2,37 @@ import React, {Component} from 'react';
 import CustomAceEditor from './CustomAceEditor.js';
 import $ from 'jquery';
 
-
 import 'brace/mode/java'
 import 'brace/theme/idle_fingers';
 import 'brace/ext/language_tools';
+
+import { FormatJS, MinifyJS } from './functions.js';
 
 class Kurs extends Component {
     resetEditor(){
         this.refs.test.resetDefault();
     }
     checkCode(){
+        console.log(this.refs.test.state.value);
+        console.log(FormatJS(this.refs.test.state.value));
+        console.log(MinifyJS(this.refs.test.state.value));
         $.ajax({
-            method: "POST",
-            url: "http://localhost/Projekt/REST_API/check",
-            headers: {
-                "Authorization": "Basic cm9vdDp0MDBy"
-            },
-            dataType: 'json',
-            data: {
-                'aufgabe' : '2',
-                'code' : this.refs.test.state.value
-            }
-        })
-            .done(function( data ) {
-                console.log(data);
-            }.bind(this));
+        method: "POST",
+        url: "http://localhost/Projekt/REST_API/check",
+        headers: {
+            "Authorization": "Basic cm9vdDp0MDBy"
+        },
+        dataType: 'json',
+        data: {
+            'aufgabe' : '2',
+            'code' : this.refs.test.state.value
+        }
+    })
+        .done(function( data ) {
+            console.log(data);
+        }.bind(this));
+
+
     }
     render() {
         return (
