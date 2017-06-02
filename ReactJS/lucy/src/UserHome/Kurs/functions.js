@@ -41,8 +41,4 @@ import js_beautify from 'js-beautify';
     }
 }
 
-function cube(x) {
-    return x * x * x;
-}
-const foo = Math.PI + Math.SQRT2;
 export { FormatJS, MinifyJS };
