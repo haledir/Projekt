@@ -9,3 +9,5 @@ Create React App doesn't handle backend logic or databases; it just creates a fr
 Um ReactJS zu lernen gibt es die obere Seite oder http://reactjs.de/posts/react-tutorial.
 
 Die Backend Logik würde ich auch in JS schreiben.
+
+Um ACE in unser Programm zu embedden, müssen wir dies mal lesen: https://ace.c9.io/#nav=embedding

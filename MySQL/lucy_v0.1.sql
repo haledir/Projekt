@@ -37,6 +37,31 @@ CREATE TABLE IF NOT EXISTS `benutzer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 -- Daten Export vom Benutzer nicht ausgewählt
+-- Exportiere Struktur von Tabelle lucy.fortschritt
+CREATE TABLE IF NOT EXISTS `fortschritt` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Speicher` text NOT NULL,
+  `Schritt` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+
+-- Daten Export vom Benutzer nicht ausgewählt
+-- Exportiere Struktur von Tabelle lucy.schwierigkeit
+CREATE TABLE IF NOT EXISTS `schwierigkeit` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Bezeichnung` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+
+-- Daten Export vom Benutzer nicht ausgewählt
+-- Exportiere Struktur von Tabelle lucy.status
+CREATE TABLE IF NOT EXISTS `status` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Bezeichnung` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+
+-- Daten Export vom Benutzer nicht ausgewählt
 -- Exportiere Struktur von Tabelle lucy.benutzer_aufgaben
 CREATE TABLE IF NOT EXISTS `benutzer_aufgaben` (
   `MatNr` int(11) NOT NULL,
@@ -57,15 +82,6 @@ CREATE TABLE IF NOT EXISTS `benutzer_aufgaben` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 -- Daten Export vom Benutzer nicht ausgewählt
--- Exportiere Struktur von Tabelle lucy.fortschritt
-CREATE TABLE IF NOT EXISTS `fortschritt` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Speicher` text NOT NULL,
-  `Schritt` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
--- Daten Export vom Benutzer nicht ausgewählt
 -- Exportiere Struktur von Tabelle lucy.schritte
 CREATE TABLE IF NOT EXISTS `schritte` (
   `A_ID` int(11) NOT NULL,
@@ -75,22 +91,6 @@ CREATE TABLE IF NOT EXISTS `schritte` (
   KEY `Schritte_fk1` (`S_ID`),
   CONSTRAINT `Schritte_fk0` FOREIGN KEY (`A_ID`) REFERENCES `aufgaben` (`ID`),
   CONSTRAINT `Schritte_fk1` FOREIGN KEY (`S_ID`) REFERENCES `schwierigkeit` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
--- Daten Export vom Benutzer nicht ausgewählt
--- Exportiere Struktur von Tabelle lucy.schwierigkeit
-CREATE TABLE IF NOT EXISTS `schwierigkeit` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Bezeichnung` varchar(50) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2;
-
--- Daten Export vom Benutzer nicht ausgewählt
--- Exportiere Struktur von Tabelle lucy.status
-CREATE TABLE IF NOT EXISTS `status` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Bezeichnung` varchar(50) NOT NULL,
-  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 -- Daten Export vom Benutzer nicht ausgewählt
