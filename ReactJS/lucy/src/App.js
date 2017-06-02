@@ -1,21 +1,61 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Login from './Login/Login.js';
+import Cookies from 'universal-cookie';
+import UserHome from './UserHome/UserHome.js';
+import $ from 'jquery';
+import Footer from "./Footer";
+
+import './index.css'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    cookies;
+    constructor(props) {
+        super(props);
+        this.cookies = new Cookies();
+        this.state = {loggedIn:  typeof this.cookies.get("matNr") !== 'undefined'};
+    };
+    signInHandler(benutzername, passwort){
+        let benutzer = {benutzername, passwort};
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/Projekt/REST_API/user/login",
+            headers: {
+                "Authorization": "Basic cm9vdDp0MDBy"
+            },
+            dataType: 'json',
+            data: benutzer
+        })
+            .done(function( data ) {
+                if(data.login){
+                    this.cookies.set('matNr', data.matnr);
+                    this.setState((prevState) => {
+                        return {loggedIn: true};
+                    });
+                } else {
+                    console.log("error");
+                }
+            }.bind(this));
+    }
+    signOutHandler(){
+        this.cookies.remove("marNr");
+        this.setState((prevState) => {
+            return {loggedIn: false};
+        });
+    }
+    render() {
+        let body = {};
+        if(this.state.loggedIn){
+            body = <UserHome signOutHandler={this.signOutHandler.bind(this)} matNr={this.cookies.get('matNr')}/>;
+        } else {
+            body = <Login signInHandler={this.signInHandler.bind(this)}/>;
+        }
+        return (
+            <div>
+                {body}
+                <Footer/>
+            </div>
+        )
+    }
 }
 
 export default App;
