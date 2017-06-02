@@ -14,12 +14,6 @@ class CheckCode
 		$sth->bindParam("id", $id);
 		$sth->execute();
 		$musterloesung = $sth->fetchObject();
-		
-		
-        
-		
-		
-		
 		return true;
     }
 }
