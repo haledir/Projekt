@@ -18,7 +18,7 @@ class App extends Component {
         let benutzer = {benutzername, passwort};
         $.ajax({
             method: "POST",
-            url: "http://127.0.0.1/lucy_api//user/login",
+            url: "http://localhost/Projekt/REST_API/user/login",
             headers: {
                 "Authorization": "Basic cm9vdDp0MDBy"
             },
