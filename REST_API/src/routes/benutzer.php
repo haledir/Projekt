@@ -3,7 +3,7 @@
 
 // Retrieve user with matnr 
 $app->get('/user/{matnr}', function ($request, $response, $args) {
-	 $sth = $this->db->prepare("SELECT * FROM benutzer WHERE matnr=:matnr");
+	 $sth = $this->db->prepare("SELECT matnr, benutzername, vorname, nachname, email FROM benutzer WHERE matnr=:matnr");
 	$sth->bindParam("matnr", $args['matnr']);
 	$sth->execute();
 	$erg = $sth->fetchObject();
@@ -13,14 +13,14 @@ $app->get('/user/{matnr}', function ($request, $response, $args) {
 // Retrieve login user
 $app->post('/user/login', function ($request, $response, $args) {
     $input = $request->getParsedBody();
-    $sth = $this->db->prepare("SELECT benutzername, passwort FROM benutzer WHERE benutzername=:benutzername");
+    $sth = $this->db->prepare("SELECT benutzername, passwort, matnr FROM benutzer WHERE benutzername=:benutzername");
     $sth->bindParam("benutzername", $input['benutzername']);
     $sth->execute();
     $erg = $sth->fetchObject();
     $isPasswordCorrect = password_verify($input['passwort'], $erg->passwort);
     if($isPasswordCorrect)
     {
-        $return = array("login"=>true);
+        $return = array("login"=>true, "matnr"=>$erg->matnr);
     } else {
         $return = array("login"=>false);
     }
