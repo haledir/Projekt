@@ -2,7 +2,7 @@
 // Routes
 
 // Retrieve all status
-$app->get('/fortschritt', function ($request, $response) {
+$app->get('/fortschritt', function ($request, $response, $args) {
 	 $sth = $this->db->prepare("SELECT * FROM fortschritt");
 	$sth->execute();
 	$erg = $sth->fetchObject();
@@ -19,7 +19,7 @@ $app->get('/fortschritt/{id}', function ($request, $response, $args) {
 });
 
 // new fortschritt
-$app->post('/fortschritt', function ($request, $response) {
+$app->post('/fortschritt', function ($request, $response, $args) {
 	$input = $request->getParsedBody();
 	$sql = "INSERT INTO fortschritt (speicher, schritt) VALUES (:speicher, :schritt)";
 	 $sth = $this->db->prepare($sql);

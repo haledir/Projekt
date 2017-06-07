@@ -31,7 +31,7 @@ $app->post('/user/login', function ($request, $response, $args) {
 // The salt and the cost factor will be extracted from $existingHashFromDb.
 //$isPasswordCorrect = password_verify($password, $existingHashFromDb);
 // Add a new user
-$app->post('/user', function ($request, $response) {
+$app->post('/user', function ($request, $response, $args) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO benutzer (matnr, benutzername, passwort, vorname, nachname, email) VALUES (:matnr, :benutzername, :passwort, :vorname, :nachname, :email)";
     $sth = $this->db->prepare($sql);
