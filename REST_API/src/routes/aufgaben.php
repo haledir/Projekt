@@ -2,7 +2,7 @@
 // Routes
 
 // Retrieve task with id 
-$app->get('/aufgabe/{id}', function ($request, $response, $args) {
+$app->get('/aufgabe/{id}', function ($args) {
 	 $sth = $this->db->prepare("SELECT * FROM aufgaben WHERE id=:id");
 	$sth->bindParam("id", $args['id']);
 	$sth->execute();
@@ -11,9 +11,9 @@ $app->get('/aufgabe/{id}', function ($request, $response, $args) {
 });
 
 // Retrieve all tasks
-$app->get('/aufgaben', function ($request, $response) {
-	 $sth = $this->db->prepare("SELECT * FROM aufgaben");
+$app->get('/aufgaben', function () {
+	 $sth = $this->db->prepare("SELECT COUNT(*) FROM aufgaben");
 	$sth->execute();
-	$erg = $sth->fetchAll();
+	$erg = $sth->fetchObject();
 	return $this->response->withJson($erg);
 });
