@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 
 class Dashboard extends Component {
     render() {
+        let percentBegin = (this.props.benutzeraufgaben[1]/this.props.aufgaben)*100,
+            percentExperienced = (this.props.benutzeraufgaben[2]/this.props.aufgaben)*100,
+            percentExpert = (this.props.benutzeraufgaben[3]/this.props.aufgaben)*100;
         return (
             <div id="user-home">
                 <div className="w3-container w3-content" style={{maxWidth:'1400px',marginTop:'80px'}}>
@@ -27,29 +30,30 @@ class Dashboard extends Component {
                                     <div className="w3-half">
                                         <div className="w3-card-2 w3-container" style={{minHeight:"460px"}}>
                                             <h3>Anfängerkurs</h3><br />
-                                            <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}></i>
+                                            <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}/>
                                             <p>Du bist neu auf der Insel?</p>
                                             <p>Fortschritt:</p>
-                                            <div><div className="w3-light-grey w3-round-xlarge">
-                                                <div id="prog_Anfaenger" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:"90%"}}>90%</div>
+                                            <div>
+                                                <div className="w3-light-grey w3-round-xlarge">
+                                                    <div id="prog_Anfaenger" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:percentBegin+"%"}}>{percentBegin}%</div>
+                                                </div>
                                             </div>
-                                            </div>
-                                            <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnA_Start" onClick={this.props.startCourse}>Kurs Starten</button>
+                                            <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnA_Start" onClick={this.props.startCourse.bind(null, 1)}>Kurs Starten</button>
                                         </div>
                                     </div>
 
                                     <div className="w3-half">
                                         <div className="w3-card-2 w3-container" style={{minHeight:"460px"}}>
                                             <h3>Fortgeschrittenkurs</h3><br />
-                                            <i className="fa fa-code w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}></i>
+                                            <i className="fa fa-code w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}/>
                                             <p>Du hast schon Erfahrung auf der Insel?</p>
                                             <p>Fortschritt:</p>
                                             <div>
                                                 <div className="w3-light-grey w3-round-xlarge">
-                                                    <div id="prog_Fortgeschritten" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:"20%"}}>20%</div>
+                                                    <div id="prog_Fortgeschritten" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:percentExperienced+"%"}}>{percentExperienced}%</div>
                                                 </div>
                                             </div>
-                                            <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnF_Start" onClick={this.props.startCourse}>Kurs Starten</button>
+                                            <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnF_Start" onClick={this.props.startCourse.bind(null, 2)}>Kurs Starten</button>
                                         </div>
                                     </div>
                                 </div>
@@ -60,15 +64,15 @@ class Dashboard extends Component {
                                         <div className="w3-half">
                                             <div className="w3-card-2 w3-container" style={{minHeight:"460px"}}>
                                                 <h3>Expertenkurs</h3><br />
-                                                <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}></i>
+                                                <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}/>
                                                 <p>Du bist neu auf der Insel?</p>
                                                 <p>Fortschritt:</p>
                                                 <div>
                                                     <div className="w3-light-grey w3-round-xlarge">
-                                                        <div id="prog_Experte" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:"1%"}}>&nbsp;</div>
+                                                        <div id="prog_Experte" className="w3-container w3-round-xlarge w3-theme w3-padding" style={{width:percentExpert+"%"}}>{percentExpert}%</div>
                                                     </div>
                                                 </div>
-                                                <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnE_Start" onClick={this.props.startCourse}>Kurs Starten</button>
+                                                <button type="button" className="w3-button w3-blue-grey w3-margin-top" id="btnE_Start" onClick={this.props.startCourse.bind(null, 3)}>Kurs Starten</button>
                                             </div>
                                         </div>
                                     </div>
