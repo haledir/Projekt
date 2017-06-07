@@ -20,24 +20,51 @@ class UserHome extends Component {
     };
     area = ["dashboard", "kurs"];
     componentWillMount(){
-        $.ajax({
-            method: "GET",
-            url: "http://localhost/Projekt/REST_API/user/"+this.props.matNr,
-            headers: {
-                "Authorization": "Basic cm9vdDp0MDBy"
-            },
-            dataType: 'json'
-        })
-            .done(function( data ) {
-                let benutzer = {
-                    name: data.Vorname + " " + data.Nachname,
-                    email: data.Email,
-                    fortschritt: "toll!"
-                };
-                this.setState((prevState) => {
-                    return {benutzer};
-                });
-            }.bind(this));
+        let state = {};
+        $.when(
+            $.ajax({
+                method: "GET",
+                url: "http://localhost/Projekt/REST_API/user/" + this.props.matNr,
+                headers: {
+                    "Authorization": "Basic cm9vdDp0MDBy"
+                },
+                dataType: 'json'
+            })
+                .done(function (data) {
+                    state.benutzer = {
+                        name: data.vorname + " " + data.nachname,
+                        email: data.email,
+                        fortschritt: "toll!"
+                    };
+                }),
+            $.ajax({
+                method: "GET",
+                url: "http://localhost/Projekt/REST_API/aufgaben" + "",
+                headers: {
+                    "Authorization": "Basic cm9vdDp0MDBy"
+                },
+                dataType: 'json'
+            })
+                .done(function (data) {
+                    state.aufgaben = data.Anzahl;
+                }),
+            $.ajax({
+                method: "GET",
+                url: "http://localhost/Projekt/REST_API/benutzeraufgabe/" + this.props.matNr,
+                headers: {
+                    "Authorization": "Basic cm9vdDp0MDBy"
+                },
+                dataType: 'json'
+            })
+                .done(function (data) {
+                    state.benutzeraufgaben = data;
+                })
+    ).then(function () {
+            console.log(state);
+            this.setState((prevState) => {
+                return state;
+            })
+        }.bind(this));
     }
     startCourse(){
         this.setState((prevState) => {
@@ -51,7 +78,7 @@ class UserHome extends Component {
     }
     render() {
         let body;
-        if(this.state.selectedArea === this.area[0]){
+        if(this.state.selectedArea === this.area[1]){
             body = <Dashboard benutzer={this.state.benutzer} startCourse={this.startCourse.bind(this)}/>
         } else {
             body = <Kurs />
