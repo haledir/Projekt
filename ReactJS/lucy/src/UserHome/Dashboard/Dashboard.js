@@ -10,11 +10,11 @@ class Dashboard extends Component {
                             <div className="w3-card-2 w3-round w3-white">
                                 <div className="w3-container">
                                     <h4 className="w3-center">Dashboard</h4>
-                                    <p className="w3-center"><img src="./img/avatar3.png" className="w3-circle" style={{height:"106px",width:"106px"}} alt="Avatar" /></p>
+                                    <p className="w3-center"><i className="fa fa-user fa-user-circle-o fa-5x"/></p>
                                     <hr />
-                                        <p><i className="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>{this.props.benutzer.name}</p>
-                                        <p><i className="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>{this.props.benutzer.email}</p>
-                                        <p><i className="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i>{this.props.benutzer.fortschritt}</p>
+                                        <p><i className="fa fa-user fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.name}</p>
+                                        <p><i className="fa fa-envelope fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.email}</p>
+                                        <p><i className="fa fa-tasks fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.fortschritt}</p>
                                 </div>
                             </div>
                         </div>

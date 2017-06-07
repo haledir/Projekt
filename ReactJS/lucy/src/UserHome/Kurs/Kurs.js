@@ -13,9 +13,6 @@ class Kurs extends Component {
         this.refs.test.resetDefault();
     }
     checkCode(){
-        console.log(this.refs.test.state.value);
-        console.log(FormatJS(this.refs.test.state.value));
-        console.log(MinifyJS(this.refs.test.state.value));
         $.ajax({
         method: "POST",
         url: "http://localhost/Projekt/REST_API/check",
@@ -30,9 +27,7 @@ class Kurs extends Component {
     })
         .done(function( data ) {
             console.log(data);
-        }.bind(this));
-
-
+        });
     }
     render() {
         return (
