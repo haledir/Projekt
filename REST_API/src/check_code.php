@@ -12,16 +12,22 @@ class CheckCode
         // Write the code into an array an get trim
         $temp = explode("\n", $java_code_benutzer );
         $fileName = "";
+        $rowsToDelete = array();
         foreach ($temp as $i=>$value) {
             $temp[$i] = trim($temp[$i]);
 
             // get the classname
-            if(substr($temp[$i],0,12) == "public class" ){
+            if(substr($temp[$i],0,12) == "public class"){
                 $tempName = explode(" ", $temp[$i]);
                 $fileName = $tempName[2];
             }
+            if($this->str_starts_with($temp[$i], "/")){
+                array_push($rowsToDelete, $i);
+            }elseif ($this->str_ends_with($temp[$i], "/")){
+                array_push($rowsToDelete, $i);
+            }
         }
-
+        var_dump($rowsToDelete);
         // Array which will be send back to the client
         // status = true    --> no Error and the compiled file is correct
         // status = false   --> an Error occured
@@ -59,5 +65,15 @@ class CheckCode
 		$sth->execute();
 		$musterloesung = $sth->fetchObject();
 		return $return;
+    }
+
+    function str_starts_with($haystack, $needle)
+    {
+        return strpos($haystack, $needle) === 0;
+    }
+    function str_ends_with($haystack, $needle)
+    {
+        return strrpos($haystack, $needle) + strlen($needle) ===
+            strlen($haystack);
     }
 }
