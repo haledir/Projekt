@@ -9,6 +9,31 @@ import 'brace/ext/language_tools';
 import { FormatJS, MinifyJS } from './functions.js';
 
 class Kurs extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            inhalt: ''
+        }
+    };
+    componentWillMount(){
+        $.ajax({
+            method: "GET",
+            url: "http://localhost/Projekt/REST_API/aufgabe/" + this.props.exercise,
+            headers: {
+                "Authorization": "Basic cm9vdDp0MDBy"
+            },
+            dataType: 'json'
+        })
+            .done(function (data) {
+                this.setState((prevState) => {
+                    return {
+                        name: data.Name,
+                        inhalt: data.Inhalt
+                    };
+                });
+            }.bind(this))
+    };
     resetEditor(){
         this.refs.test.resetDefault();
     }
@@ -21,7 +46,7 @@ class Kurs extends Component {
         },
         dataType: 'json',
         data: {
-            'aufgabe' : '2',
+            'aufgabe' : this.props.exercise,
             'code' : this.refs.test.state.value
         }
     })
@@ -34,9 +59,8 @@ class Kurs extends Component {
             <div>
                 <div className="w3-row w3-border w3-padding">
                     <div className="w3-third w3-container w3-blue" style={{height: "555px"}}>
-                        <h5>Aufgabe</h5>
-                        <p>Auf dieser Seite wird die Aufgabe zu sehen sein</p>
-                        <p>Bla bla</p>
+                        <h5>{this.state.name}</h5>
+                        <p>{this.state.inhalt}</p>
                     </div>
                     <div className="w3-container w3-twothird">
                         <div className="w3-bar w3-blue-grey">

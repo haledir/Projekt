@@ -11,6 +11,7 @@ class UserHome extends Component {
         super(props);
         this.state = {
             selectedDif: 0,
+            exercise: 0,
             benutzer: {
                 name: "",
                 email: "",
@@ -77,12 +78,18 @@ class UserHome extends Component {
     }
     startCourse(level){
         this.setState((prevState) => {
-            return {selectedDif: level};
+            return {
+                selectedDif: level,
+                exercise: prevState.schwierigkeit[level] + 1
+            };
         });
     };
     showDashboard(){
         this.setState((prevState) => {
-            return {selectedDif: 0};
+            return {
+                selectedDif: 0,
+                exercise: 0
+            };
         });
     }
     render() {
@@ -90,7 +97,7 @@ class UserHome extends Component {
         if(this.state.selectedDif === 0){
             body = <Dashboard benutzer={this.state.benutzer} startCourse={this.startCourse.bind(this)} benutzeraufgaben={this.state.schwierigkeit} aufgaben={this.state.aufgaben}/>
         } else {
-            body = <Kurs difficulty={this.state.selectedDif}/>
+            body = <Kurs difficulty={this.state.selectedDif} exercise={this.state.exercise}/>
         }
         return (
             <div id="user-home">
