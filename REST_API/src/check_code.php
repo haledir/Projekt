@@ -56,6 +56,9 @@ class CheckCode
         $java = 'C:\Program Files\Java\jdk1.8.0_112\bin\java.exe';
 
         // Compile the generated java-File
+        //
+        // WICHTIG: imports können noch nicht kompiliert werden!
+        //
         $return["compilerMessage"] = shell_exec('"'.$javac.'" '.$fileName.'.java 2>&1');
 
         // execute the compiled java-File
