@@ -13,6 +13,7 @@ class CheckCode
         $temp = explode("\n", $java_code_benutzer );
         $fileName = "";
         $rowsToDelete = array();
+        $commentLang = false;
         foreach ($temp as $i=>$value) {
             $temp[$i] = trim($temp[$i]);
 
@@ -21,13 +22,22 @@ class CheckCode
                 $tempName = explode(" ", $temp[$i]);
                 $fileName = $tempName[2];
             }
-            if($this->str_starts_with($temp[$i], "/")){
+            if($this->startsWith($temp[$i], "//")){
                 array_push($rowsToDelete, $i);
-            }elseif ($this->str_ends_with($temp[$i], "/")){
+            }elseif ($this->startsWith($temp[$i], "/*") or $commentLang == true){
+                $commentLang = true;
                 array_push($rowsToDelete, $i);
+                if($this->endsWith($temp[$i], "*/")){
+                    $commentLang = false;
+                }
             }
         }
-        var_dump($rowsToDelete);
+
+        // Clean commentary from source code
+        foreach ( $rowsToDelete as $value){
+            unset($temp[$value]);
+        }
+
         // Array which will be send back to the client
         // status = true    --> no Error and the compiled file is correct
         // status = false   --> an Error occured
@@ -51,7 +61,8 @@ class CheckCode
         // execute the compiled java-File
         if(empty($return["compilerMessage"])) {
             $return["status"] = true;
-            $return["result"] = exec('"' . $java . '" '.$fileName.' 2>&1');
+            exec('"' . $java . '" '.$fileName.' 2>&1', $output);
+            $return["result"] = $output;
         } else {
             $return["status"] = false;
             $return["result"] = "";
@@ -60,6 +71,14 @@ class CheckCode
         unlink($fileName.".java");
         unlink($fileName.".class");
 
+        // Get the solution and output
+        /* TODO:
+         * Musterausgabe in DB schreiben (In Init Klasse hinzufügen)
+         * Musterausgabe aus der DB ziehen.
+         * Musterausgabe mit aktueller Ausgabe vergleichen
+         * Wenn Musterausgabe mit aktueller Ausgabe übereinstimmt, dann ein true zurückgeben
+         * Wenn Musterausgabe nicht mit aktueller Ausgabe übereinstimmt, dann Musterlösung mit Code vom benutzer vergleichen und Hinweis zurückgeben (inklusive Zeilennummer)
+        */
 		$sth = $app->db->prepare("SELECT musterloesung FROM aufgaben WHERE id=:id");
 		$sth->bindParam("id", $id);
 		$sth->execute();
@@ -67,13 +86,19 @@ class CheckCode
 		return $return;
     }
 
-    function str_starts_with($haystack, $needle)
+    function startsWith($haystack, $needle)
     {
-        return strpos($haystack, $needle) === 0;
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
     }
-    function str_ends_with($haystack, $needle)
+
+    function endsWith($haystack, $needle)
     {
-        return strrpos($haystack, $needle) + strlen($needle) ===
-            strlen($haystack);
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
     }
 }
