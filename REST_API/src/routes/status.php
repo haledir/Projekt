@@ -2,7 +2,7 @@
 // Routes
 
 // Retrieve all status
-$app->get('/status', function ($request, $response) {
+$app->get('/status', function ($request, $response, $args) {
 	 $sth = $this->db->prepare("SELECT * FROM status");
 	$sth->execute();
 	$erg = $sth->fetchAll();

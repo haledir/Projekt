@@ -2,7 +2,7 @@
 // Routes
 
 // Alle verknüpften Benutzer und Aufgaben bekommen
-$app->get('/benutzeraufgaben', function ($request, $response) {
+$app->get('/benutzeraufgaben', function ($request, $response, $args) {
 	 $sth = $this->db->prepare("SELECT * FROM benutzer_aufgaben");
 	$sth->execute();
 	$erg = $sth->fetchAll();
@@ -10,7 +10,7 @@ $app->get('/benutzeraufgaben', function ($request, $response) {
 });
 
 // Neue Aufgabe mit Benutzer verknüpfen
-$app->post('/benutzeraufgabe', function ($request, $response) {
+$app->post('/benutzeraufgabe', function ($request, $response, $args) {
 	$input = $request->getParsedBody();	
 	 $sql = "INSERT INTO benutzer_aufgaben (matnr, a_id, status, fortschritt, schwierigkeit) VALUES (:matnr, :a_id, :status, :fortschritt, :schwierigkeit)";
 	 $sth = $this->db->prepare($sql);
@@ -21,6 +21,26 @@ $app->post('/benutzeraufgabe', function ($request, $response) {
 	$sth->bindParam("schwierigkeit", $input['schwierigkeit']);
 	$sth->execute();
 	return $this->response->withJson($input);
+});
+
+// Alle Aufgaben mit dem Schwierigkeitsgrad {s_id} von Benutzer {matnr} abfragen
+$app->get('/benutzeraufgabe/{matnr}/{s_id}', function ($request, $response, $args) {
+    $sth = $this->db->prepare("SELECT * FROM benutzer_aufgaben WHERE matnr=:matnr and schwierigkeit=:s_id");
+    $sth->bindParam("matnr", $args['matnr']);
+    $sth->bindParam("s_id", $args['s_id']);
+    $sth->execute();
+    $erg = $sth->fetchAll();
+    return $this->response->withJson($erg);
+});
+
+
+// Alle von Benutzer {matnr} abfragen
+$app->get('/benutzeraufgabe/{matnr}', function ($request, $response, $args) {
+    $sth = $this->db->prepare("select schwierigkeit, max(a_id) from benutzer_aufgaben where matnr=:matnr and status = 3 group by schwierigkeit");
+    $sth->bindParam("matnr", $args['matnr']);
+    $sth->execute();
+    $erg = $sth->fetchAll();
+    return $this->response->withJson($erg);
 });
 
 // Aufgabe {a_id} mit dem Schwierigkeitsgrad {s_id} von Benutzer {matnr} abfragen

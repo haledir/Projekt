@@ -1,3 +1,7 @@
+.lucy-top{
+  z-index: 100;
+}
+
 .lucy-home-body{
   margin-top: 55px;
 }
