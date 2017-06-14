@@ -18,7 +18,7 @@ class Kurs extends Component {
         }
     };
     componentWillMount(){
-        this.addEditor('newClass');
+        this.addEditor('firstClass');
         $.ajax({
             method: "GET",
             url: "http://localhost/Projekt/REST_API/aufgabe/" + this.props.exercise,
@@ -38,16 +38,14 @@ class Kurs extends Component {
     };
     addEditor (name){
         let editors = this.state.editors,
-            editorNames = Object.keys(editors),
-            i = 1;
-        console.log(editorNames);
+            i = 1,
+            tmpName = name;
         while(editors.hasOwnProperty(name)){
-            name = name + i.toString();
+            name = tmpName + i.toString();
             i++;
         }
         for(let editorName in editors) {
             if (editors.hasOwnProperty(editorName)){
-                console.log(editorName);
                 editors[editorName] = false;
             }
         }
@@ -77,14 +75,54 @@ class Kurs extends Component {
         .done(function( data ) {
             console.log(data);
         });
+    };
+    changeEditor(name){
+        let editors = this.state.editors;
+        for(let editorName in editors) {
+            if (editors.hasOwnProperty(editorName)) {
+                editors[editorName] = (name === editorName);
+            }
+        }
+        this.setState((prevState) => {
+            return {
+                editors: editors
+            };
+        });
+    };
+    closeEditor(name){
+        let editors = this.state.editors,
+            lastEditor = Object.keys(editors)[1];
+        for(let editorName in editors) {
+            if (editors.hasOwnProperty(editorName)) {
+                if(editorName === name) {
+                    break;
+                }
+                lastEditor = editorName;
+            }
+        }
+        delete editors[name];
+        editors[lastEditor] = true;
+        this.setState((prevState) => {
+            return {
+                editors: editors
+            };
+        });
     }
     render() {
         let editors = [],
             buttons = [],
             editorNames = Object.keys(this.state.editors);
         for(let name of editorNames){
-            editors.push(<CustomAceEditor ref={name} key={name}/>);
-            buttons.push(<button className="w3-bar-item w3-button active_btn" key={name}>{name}.java</button>)
+            let active = (this.state.editors[name] && Object.keys(this.state.editors).length > 1),
+                addClassName = "";
+            if(active){
+                addClassName = " lucy-close-button";
+            }
+            editors.push(<CustomAceEditor ref={name} key={name} show={this.state.editors[name]}/>);
+            buttons.push(<button className={"w3-bar-item w3-button active_btn"} key={name} onClick={this.changeEditor.bind(this, name)}>{name}.java</button>);
+            if(active){
+                buttons.push(<button className={"w3-bar-item w3-button active_btn"} onClick={this.closeEditor.bind(this, name)}><i className="fa fa-close fa-2"/></button>);
+            }
         }
         return (
             <div>

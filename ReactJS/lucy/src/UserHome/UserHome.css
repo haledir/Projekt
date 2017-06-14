@@ -5,3 +5,7 @@
 .lucy-home-body{
   margin-top: 55px;
 }
+
+.lucy-close-button{
+  border-right: solid 1px #ccc;
+}

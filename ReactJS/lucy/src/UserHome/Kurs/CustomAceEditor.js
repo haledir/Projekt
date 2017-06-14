@@ -17,43 +17,50 @@ class CustomAceEditor extends Component {
     }
 }`;
         this.state = {
-            value : this.defaultValue};
+            value: this.defaultValue
+        };
     };
+
     defaultValue = "";
-    onChange(newValue){
+
+    onChange(newValue) {
         this.setState((prevState) => {
             return {value: newValue};
         });
     };
-    resetDefault(){
+
+    resetDefault() {
         this.setState((prevState) => {
             return {value: this.defaultValue};
         });
     }
-    render(){
-        return(
+
+    render() {
+        let display = this.props.show ? "block" : "none";
+        return (
             <AceEditor
-            className="w3-margin-top"
-            mode="java"
-            theme="idle_fingers"
-            name="UNIQUE_ID_OF_DIV"
-            editorProps={{$blockScrolling: true}}
-            width="100%"
-            onLoad={(editor) => {
-                editor.focus();
-                editor.getSession().setUseWrapMode(true);
-                editor.setOptions({
-                    enableBasicAutocompletion: true,
-                    enableLiveAutocompletion: true,
-                    enableSnippets: false,
-                    showLineNumbers: true,
-                    tabSize: 4,
-                });
-            }}
-            onChange={this.onChange.bind(this)}
-            wrapEnabled={true}
-            value={this.state.value}
-        />)
+                style={{display: display}}
+                className="w3-margin-top"
+                mode="java"
+                theme="idle_fingers"
+                name="UNIQUE_ID_OF_DIV"
+                editorProps={{$blockScrolling: true}}
+                width="100%"
+                onLoad={(editor) => {
+                    editor.focus();
+                    editor.getSession().setUseWrapMode(true);
+                    editor.setOptions({
+                        enableBasicAutocompletion: true,
+                        enableLiveAutocompletion: true,
+                        enableSnippets: false,
+                        showLineNumbers: true,
+                        tabSize: 4,
+                    });
+                }}
+                onChange={this.onChange.bind(this)}
+                wrapEnabled={true}
+                value={this.state.value}
+            />)
     }
 
 }
