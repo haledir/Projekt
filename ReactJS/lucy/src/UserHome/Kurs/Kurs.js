@@ -13,10 +13,12 @@ class Kurs extends Component {
         super(props);
         this.state = {
             name: '',
-            inhalt: ''
+            inhalt: '',
+            editors: {}
         }
     };
     componentWillMount(){
+        this.addEditor('newClass');
         $.ajax({
             method: "GET",
             url: "http://localhost/Projekt/REST_API/aufgabe/" + this.props.exercise,
@@ -34,9 +36,31 @@ class Kurs extends Component {
                 });
             }.bind(this))
     };
+    addEditor (name){
+        let editors = this.state.editors,
+            editorNames = Object.keys(editors),
+            i = 1;
+        console.log(editorNames);
+        while(editors.hasOwnProperty(name)){
+            name = name + i.toString();
+            i++;
+        }
+        for(let editorName in editors) {
+            if (editors.hasOwnProperty(editorName)){
+                console.log(editorName);
+                editors[editorName] = false;
+            }
+        }
+        editors[name] = true;
+        this.setState((prevState) => {
+            return {
+                editors: editors
+            };
+        });
+    };
     resetEditor(){
         this.refs.test.resetDefault();
-    }
+    };
     checkCode(){
         $.ajax({
         method: "POST",
@@ -55,6 +79,13 @@ class Kurs extends Component {
         });
     }
     render() {
+        let editors = [],
+            buttons = [],
+            editorNames = Object.keys(this.state.editors);
+        for(let name of editorNames){
+            editors.push(<CustomAceEditor ref={name} key={name}/>);
+            buttons.push(<button className="w3-bar-item w3-button active_btn" key={name}>{name}.java</button>)
+        }
         return (
             <div>
                 <div className="w3-row w3-border w3-padding">
@@ -64,17 +95,12 @@ class Kurs extends Component {
                     </div>
                     <div className="w3-container w3-twothird">
                         <div className="w3-bar w3-blue-grey">
-                            <button className="w3-bar-item w3-button active_btn w3-theme-dark">main.java</button>
-                            <button className="w3-bar-item w3-button active_btn">side.java</button>
-                            <button className="w3-bar-item w3-button active_btn">new.java</button>
+                            {buttons}
+                            <button className="w3-bar-item w3-button active_btn" onClick={this.addEditor.bind(this, "newClass")}>
+                                <i className="fa fa-plus-circle fa-2" />
+                            </button>
                         </div>
-                        <CustomAceEditor ref="test"/>
-                        <div id="side.java" className="java_file" style={{display: "none"}}>
-                            <div id="editor_side" className="w3-margin-top" style={{height: "500px"}}></div>
-                        </div>
-                        <div id="new.java" className="java_file" style={{display: "none"}}>
-                            <div id="editor_new" className="w3-margin-top" style={{height: "500px"}}></div>
-                        </div>
+                        {editors}
                         <div className="w3-row w3-margin-top w3-right">
                             <button className="w3-bar-item w3-theme w3-button lucy-button" onClick={this.checkCode.bind(this)}>Check Code</button>
                             <button className="w3-bar-item w3-theme w3-button lucy-button" onClick={this.resetEditor.bind(this)}>Reset</button>
