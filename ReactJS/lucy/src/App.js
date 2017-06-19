@@ -12,7 +12,10 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.cookies = new Cookies();
-        this.state = {loggedIn:  typeof this.cookies.get("matNr") !== 'undefined'};
+        this.state = {
+            loggedIn:  typeof this.cookies.get("matNr") !== 'undefined',
+            loginError: false
+        };
     };
     signInHandler(benutzername, passwort){
         let benutzer = {benutzername, passwort};
@@ -26,18 +29,22 @@ class App extends Component {
             data: benutzer
         })
             .done(function( data ) {
+                let state = {};
                 if(data.login){
                     this.cookies.set('matNr', data.matnr);
-                    this.setState((prevState) => {
-                        return {loggedIn: true};
-                    });
+                    state.loggedIn = true;
+                    state.loginError = false;
                 } else {
-                    console.log("error");
+                    state.loggedIn = false;
+                    state.loginError = true;
                 }
+                this.setState((prevState) => {
+                    return state;
+                });
             }.bind(this));
     }
     signOutHandler(){
-        this.cookies.remove("marNr");
+        this.cookies.remove("matNr");
         this.setState((prevState) => {
             return {loggedIn: false};
         });
@@ -47,10 +54,10 @@ class App extends Component {
         if(this.state.loggedIn){
             body = <UserHome signOutHandler={this.signOutHandler.bind(this)} matNr={this.cookies.get('matNr')}/>;
         } else {
-            body = <Login signInHandler={this.signInHandler.bind(this)}/>;
+            body = <Login signInHandler={this.signInHandler.bind(this)} loginError={this.state.loginError}/>;
         }
         return (
-            <div>
+            <div className="lucy-app">
                 {body}
                 <Footer/>
             </div>

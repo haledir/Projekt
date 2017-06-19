@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.lucy-app{
+  height: 100%;
+}
+
 .lucy-button{
   font-weight: 900;
   margin: 3px;

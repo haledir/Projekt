@@ -64,7 +64,7 @@ class Login extends Component {
                             <h4>Anmelden</h4>
                         </header>
                         <div className="w3-padding">
-                            <LoginForm show={this.state.loginForm} signInHandler={this.props.signInHandler}/>
+                            <LoginForm show={this.state.loginForm} signInHandler={this.props.signInHandler} loginError={this.props.loginError}/>
                         </div>
                         <footer className="w3-container w3-theme">
                             <p>Melde dich an und beginne deine Tour!</p>

@@ -13,6 +13,15 @@ class LoginForm extends Component {
             }
         };
     };
+    componentWillReceiveProps(nextProps){
+        if(nextProps.loginError){
+            this.setState((prevState) => {
+                let state = prevState;
+                state.signIn.passwort = "";
+                return state;
+            })
+        }
+    };
     signInFormSubmit(event){
         event.preventDefault();
         this.props.signInHandler(this.state.signIn.benutzername, this.state.signIn.passwort);
@@ -26,16 +35,21 @@ class LoginForm extends Component {
         });
     };
     render() {
-        let loginScreenStyle = {};
+        let loginScreenStyle = {},
+            loginError;
+        if(this.props.loginError){
+            loginError = <div className="w3-container w3-border-red w3-border w3-center">Falsche Logindaten eingegeben!</div>
+        }
         loginScreenStyle.display = this.props.show ? "block" : "none";
         return (
             <form className="w3-container w3-card-4" onSubmit={this.signInFormSubmit.bind(this)}>
+                {loginError}
                 <div className="w3-section">
-                    <input id="benutzername" className="w3-input" onChange={this.changeSignIn.bind(this)} type="text" required/>
+                    <input id="benutzername" className="w3-input" onChange={this.changeSignIn.bind(this)} value={this.state.signIn.benutzername} type="text" required/>
                     <label>Benutzername</label>
                 </div>
                 <div className="w3-section">
-                    <input id="passwort" className="w3-input" onChange={this.changeSignIn.bind(this)} type="password" required/>
+                    <input id="passwort" className="w3-input" onChange={this.changeSignIn.bind(this)} value={this.state.signIn.passwort} type="password" required/>
                     <label>Passwort</label>
                 </div>
                 <div className="w3-padding">

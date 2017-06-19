@@ -60,6 +60,7 @@ class Kurs extends Component {
         this.refs.test.resetDefault();
     };
     checkCode(){
+        let editor = Object.keys(this.state.editors)[0];
         $.ajax({
         method: "POST",
         url: "http://localhost/Projekt/REST_API/check",
@@ -69,7 +70,7 @@ class Kurs extends Component {
         dataType: 'json',
         data: {
             'aufgabe' : this.props.exercise,
-            'code' : this.refs.test.state.value
+            'code' : this.refs[editor].state.value
         }
     })
         .done(function( data ) {
@@ -114,14 +115,11 @@ class Kurs extends Component {
             editorNames = Object.keys(this.state.editors);
         for(let name of editorNames){
             let active = (this.state.editors[name] && Object.keys(this.state.editors).length > 1),
-                addClassName = "";
-            if(active){
                 addClassName = " lucy-close-button";
-            }
             editors.push(<CustomAceEditor ref={name} key={name} show={this.state.editors[name]}/>);
-            buttons.push(<button className={"w3-bar-item w3-button active_btn"} key={name} onClick={this.changeEditor.bind(this, name)}>{name}.java</button>);
+            buttons.push(<button className={"w3-bar-item w3-button active_btn"+(active ? "" : addClassName)} key={name} onClick={this.changeEditor.bind(this, name)}>{name}.java</button>);
             if(active){
-                buttons.push(<button className={"w3-bar-item w3-button active_btn"} onClick={this.closeEditor.bind(this, name)}><i className="fa fa-close fa-2"/></button>);
+                buttons.push(<button className={"w3-bar-item w3-button active_btn"+addClassName} onClick={this.closeEditor.bind(this, name)} key={name+"_button"}><i className="fa fa-close fa-2"/></button>);
             }
         }
         return (
