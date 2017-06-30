@@ -91,13 +91,64 @@ class UserHome extends Component {
                 exercise: 0
             };
         });
+    };
+    nextExercise(){
+        let data = {
+            matnr: this.props.matNr,
+            'a_id': this.state.exercise,
+            status: 3,
+            fortschritt: 1,
+            schwierigkeit: this.state.selectedDif
+        };
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/Projekt/REST_API/benutzeraufgabe",
+            headers: {
+                "Authorization": "Basic cm9vdDp0MDBy"
+            },
+            dataType: 'json',
+            data: data
+        })
+            .done(function (data) {
+            });
+        this.setState((prevState) => {
+            let schwierigkeit = prevState.schwierigkeit;
+            schwierigkeit[prevState.selectedDif]++;
+            return {
+                schwierigkeit: schwierigkeit
+            }
+        });
+        data['a_id']++;
+        data.status = 2;
+        if(data['a_id'] <= this.state.aufgaben) {
+            $.ajax({
+                method: "POST",
+                url: "http://localhost/Projekt/REST_API/benutzeraufgabe",
+                headers: {
+                    "Authorization": "Basic cm9vdDp0MDBy"
+                },
+                dataType: 'json',
+                data: data
+            })
+                .done(function (data) {
+                });
+            this.setState((prevState) => {
+                return {
+                    exercise: prevState.exercise + 1
+                }
+            })
+        }
     }
     render() {
         let body;
         if(this.state.selectedDif === 0){
             body = <Dashboard benutzer={this.state.benutzer} startCourse={this.startCourse.bind(this)} benutzeraufgaben={this.state.schwierigkeit} aufgaben={this.state.aufgaben}/>
         } else {
-            body = <Kurs difficulty={this.state.selectedDif} exercise={this.state.exercise}/>
+            body = <Kurs
+                difficulty={this.state.selectedDif}
+                exercise={this.state.exercise}
+                nextExercise={this.nextExercise.bind(this)}
+            />
         }
         return (
             <div id="user-home">

@@ -109,7 +109,7 @@ class CheckCode
             //echo $value."\n";
             //echo $p_falseValue."\n";
             if($value == $p_falseValue){
-                return $i;
+                return $i+1;
             }
         }
 
