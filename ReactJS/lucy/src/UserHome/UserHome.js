@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import $ from 'jquery';
 import Dashboard from "./Dashboard/Dashboard";
 import Kurs from "./Kurs/Kurs";
@@ -118,20 +118,7 @@ class UserHome extends Component {
                 schwierigkeit: schwierigkeit
             }
         });
-        data['a_id']++;
-        data.status = 2;
         if(data['a_id'] <= this.state.aufgaben) {
-            $.ajax({
-                method: "POST",
-                url: "http://localhost/Projekt/REST_API/benutzeraufgabe",
-                headers: {
-                    "Authorization": "Basic cm9vdDp0MDBy"
-                },
-                dataType: 'json',
-                data: data
-            })
-                .done(function (data) {
-                });
             this.setState((prevState) => {
                 return {
                     exercise: prevState.exercise + 1
@@ -151,9 +138,8 @@ class UserHome extends Component {
             />
         }
         return (
-            <div id="user-home">
-                <NavBar signOutHandler={this.props.signOutHandler} showDashboard={this.showDashboard.bind(this)}/>
-                <div className="lucy-home-body">
+            <div id="user-home w3-container w3-content">
+                <div className="lucy-home-body w3-row-padding">
                     {body}
                 </div>
             </div>

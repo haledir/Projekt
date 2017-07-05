@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Login from './Login/Login.js';
 import Cookies from 'universal-cookie';
 import UserHome from './UserHome/UserHome.js';
+import NavBar from './NavBar.js';
 import $ from 'jquery';
 import Footer from "./Footer";
 
@@ -49,10 +50,14 @@ class App extends Component {
             return {loggedIn: false};
         });
     }
+    showDashboard(){
+        this.refs.UserHome.showDashboard();
+    }
     render() {
         let body = {};
         if(this.state.loggedIn){
-            body = <UserHome signOutHandler={this.signOutHandler.bind(this)} matNr={this.cookies.get('matNr')}/>;
+            body = [<NavBar signOutHandler={this.signOutHandler.bind(this)} key="NavBar" showDashboard={this.showDashboard.bind(this)}/>,
+                <UserHome signOutHandler={this.signOutHandler.bind(this)} key="UserHome" matNr={this.cookies.get('matNr')} ref="UserHome"/>];
         } else {
             body = <Login signInHandler={this.signInHandler.bind(this)} loginError={this.state.loginError}/>;
         }

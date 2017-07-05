@@ -56,6 +56,7 @@ class Kurs extends Component {
                         state.schritte = {};
                     }
                     state.schritt = 0;
+                    state.schrittInsgesamt = Object.keys(state.schritte).length;
                 }.bind(this))
         ).then(function () {
             this.setState((prevState) => {
@@ -113,6 +114,25 @@ class Kurs extends Component {
                         done: true
                     }
                 })
+            } else {
+                let state = {};
+                if(data.errorInLine === -1 && data.compilerMessage.length > 0){
+                    let foundErrorLine = data.compilerMessage.match(/\.java\:(\d+)\:/);
+                    foundErrorLine = parseInt(foundErrorLine[1]);
+                    state.errorLine = foundErrorLine;
+                    let errorMessage = data.compilerMessage.match(/error: (.+)\n/)[1];
+                    if(errorMessage.length === 0){
+                        errorMessage = "Compiler Error. Fehler in dieser Zeile";
+                    }
+                    state.errorMessage = errorMessage;
+
+                } else {
+                    state.errorLine = data.errorInLine;
+                    state.errorMessage = "Diese Zeile stimmt nicht mit der Musterlösung überein. Bitte überarbeite sie!"
+                }
+                this.setState((prevState) => {
+                    return state
+                })
             }
         }.bind(this));
     };
@@ -156,6 +176,30 @@ class Kurs extends Component {
             })
         }
     }
+    resetError(){
+        this.setState((prevState) => {
+            return {
+                errorLine: undefined,
+                errorMessage: undefined
+            }
+        })
+    }
+    getSchwierigkeit(){
+        let schwierigkeit;
+        switch (this.props.difficulty){
+            case 1:
+                schwierigkeit = "Anfänger";
+                break;
+            case 2:
+                schwierigkeit = "Fortgeschritten";
+                break;
+            case 3:
+                schwierigkeit = "Experte";
+                break;
+        }
+        console.log(schwierigkeit);
+        return schwierigkeit;
+    }
     render() {
         let editors = [],
             buttons = [],
@@ -166,7 +210,16 @@ class Kurs extends Component {
         for(let name of editorNames){
             let active = (this.state.editors[name] && Object.keys(this.state.editors).length > 1),
                 addClassName = " lucy-close-button";
-            editors.push(<CustomAceEditor ref={name} key={name} show={this.state.editors[name]}/>);
+            editors.push(
+                <CustomAceEditor
+                ref={name}
+                key={name}
+                show={this.state.editors[name]}
+                error={this.state.editors[name] ? this.state.errorLine : undefined}
+                compilerError={this.state.editors[name] ? this.state.compilerError : undefined}
+                errorMessage = {this.state.editors[name] ? this.state.errorMessage : undefined}
+                resetError={this.resetError.bind(this)}
+                />);
             buttons.push(<button className={"w3-bar-item w3-button active_btn"+(active ? "" : addClassName)} key={name} onClick={this.changeEditor.bind(this, name)}>{name}.java</button>);
             if(active){
                 buttons.push(<button className={"w3-bar-item w3-button active_btn"+addClassName} onClick={this.closeEditor.bind(this, name)} key={name+"_button"}><i className="fa fa-close fa-2"/></button>);
@@ -179,13 +232,18 @@ class Kurs extends Component {
             steps.push(<p key={"hint_"+i}>{this.state.schritte["schritt"+i]}</p>)
         }
         if(steps.length > 0){
-            steps.unshift(<h6 key="loesungshinweise"><b>Lösungshinweise:</b></h6>)
+            steps.unshift(<h5 key="loesungshinweise"><b>Lösungshinweise:</b></h5>)
         }
         return (
             <div>
+                <div className="w3-row-padding w3-center w3-margin-top">
+                    <h2>{this.state.name}</h2>
+                    <p className="w3-large">Bearbeiten Sie in diesem Editor nun die {this.state.name} mit dem Schwierigkeitsgrad '{this.getSchwierigkeit()}'</p>
+                    <br/>
+                </div>
                 <div className="w3-row w3-border w3-padding">
                     <div className="w3-third w3-container w3-blue" style={{height: "555px", overflow: "auto"}}>
-                        <h5>{this.state.name}</h5>
+                        <h5><b>Aufgabenstellung:</b></h5>
                         <p>{this.state.inhalt}</p>
                         {steps}
                     </div>
@@ -199,7 +257,7 @@ class Kurs extends Component {
                         {editors}
                         <div className="w3-row w3-margin-top w3-left">
                             {furtherButtons}
-                            <button className="w3-bar-item w3-theme w3-button lucy-button" onClick={this.addHint.bind(this)}>Tipp</button>
+                            <button className="w3-bar-item w3-theme w3-button lucy-button" disabled={this.state.schritt >= this.state.schrittInsgesamt} onClick={this.addHint.bind(this)}>Tipp</button>
                         </div>
                         <div className="w3-row w3-margin-top w3-right">
                             <button className="w3-bar-item w3-theme w3-button lucy-button" onClick={this.checkCode.bind(this)}>Check Code</button>,

@@ -71,11 +71,11 @@ class Login extends Component {
                         </footer>
                     </div>
                 </div>
-                <div className="w3-row-padding w3-center w3-margin-top">
+                <div className="w3-row-padding w3-center w3-margin-top w3-margin-bottom">
                     <div className="w3-third">
                         <div className="w3-card-2 w3-container lucy-container">
                             <h3>Anfänger</h3><br />
-                            <i className="fa fa-desktop w3-margin-bottom w3-text-theme lucy-cap"></i>
+                            <i className="fa fa-desktop w3-margin-bottom w3-text-theme lucy-cap"/>
                             <p>Du bist neu auf der Insel?</p>
                             <p>Lerne Java von Grund auf</p>
                             <p>Zahlreiche Aufgaben</p>
@@ -86,7 +86,7 @@ class Login extends Component {
                     <div className="w3-third">
                         <div className="w3-card-2 w3-container lucy-container">
                             <h3>Fortgeschritten</h3><br/>
-                            <i className="fa fa-code w3-margin-bottom w3-text-theme lucy-cap"></i>
+                            <i className="fa fa-code w3-margin-bottom w3-text-theme lucy-cap"/>
                             <p>Du hast schon Erfahrung auf der Insel?</p>
                             <p>Verwende bereits gelerntes</p>
                             <p>Zahlreiche Aufgaben</p>

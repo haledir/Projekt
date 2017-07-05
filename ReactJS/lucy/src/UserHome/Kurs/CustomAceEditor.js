@@ -20,10 +20,9 @@ class CustomAceEditor extends Component {
             value: this.defaultValue
         };
     };
-
     defaultValue = "";
-
     onChange(newValue) {
+        this.props.resetError();
         this.setState((prevState) => {
             return {value: newValue};
         });
@@ -37,6 +36,14 @@ class CustomAceEditor extends Component {
 
     render() {
         let display = this.props.show ? "block" : "none";
+        const annotations = [];
+        if(this.props.error){
+            annotations.push({
+                row: this.props.error - 1,
+                text: this.props.errorMessage,
+                type: 'error'
+            });
+        }
         return (
             <AceEditor
                 style={{display: display}}
@@ -46,9 +53,10 @@ class CustomAceEditor extends Component {
                 name="UNIQUE_ID_OF_DIV"
                 editorProps={{$blockScrolling: true}}
                 width="100%"
+                annotations={annotations}
                 onLoad={(editor) => {
                     editor.focus();
-                    editor.getSession().setUseWrapMode(true);
+                    editor.session.setUseWrapMode(true);
                     editor.setOptions({
                         enableBasicAutocompletion: true,
                         enableLiveAutocompletion: true,

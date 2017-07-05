@@ -4,8 +4,13 @@
 
 .lucy-home-body{
   margin-top: 55px;
+  margin-bottom: 30px;
 }
 
 .lucy-close-button{
   border-right: 2px solid red !important;
+}
+
+lucy-editor-error{
+  background-color: red;
 }

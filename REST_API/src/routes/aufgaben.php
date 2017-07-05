@@ -3,7 +3,7 @@
 
 // Retrieve task with id 
 $app->get('/aufgabe/{id}', function ($request, $response, $args) {
-	 $sth = $this->db->prepare("SELECT * FROM aufgaben WHERE id=:id");
+	 $sth = $this->db->prepare("SELECT Name, Inhalt FROM aufgaben WHERE id=:id");
 	$sth->bindParam("id", $args['id']);
 	$sth->execute();
 	$erg = $sth->fetchObject();
