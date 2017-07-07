@@ -18,8 +18,8 @@ $app->post('/init', function ($request, $response, $args) {
     $schwierigkeit->execute();
 
     //Fortschritt, weil nicht genutzt
-    $sql_fortschritt = "INSERT INTO `fortschritt` (`ID`, `Schritt`) VALUES	(1, '0');";
-    $fortschritt = $this->db->prepare($sql_schwierigkeit);
+    $sql_fortschritt = "INSERT INTO `fortschritt` (`Speicher`, `Schritt`) VALUES ('\"\"', 0);";
+    $fortschritt = $this->db->prepare($sql_fortschritt);
     $fortschritt->execute();
 
     // Schritte
