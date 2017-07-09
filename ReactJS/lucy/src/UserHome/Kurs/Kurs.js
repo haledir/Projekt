@@ -197,7 +197,6 @@ class Kurs extends Component {
                 schwierigkeit = "Experte";
                 break;
         }
-        console.log(schwierigkeit);
         return schwierigkeit;
     }
     render() {
