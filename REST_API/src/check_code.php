@@ -27,8 +27,8 @@ class CheckCode
         fclose($javaFile);
 
         // Define needed variables
-        $javac = 'C:\Program Files\Java\jdk1.8.0_112\bin\javac.exe';
-        $java = 'C:\Program Files\Java\jdk1.8.0_112\bin\java.exe';
+        $javac = 'C:\Program Files (x86)\Java\jdk1.8.0_131\bin\javac.exe';
+        $java = 'C:\Program Files (x86)\Java\jdk1.8.0_131\bin\java.exe';
 
         // Compile the generated java-File
         //
@@ -64,7 +64,9 @@ class CheckCode
             exec('"' . $java . '" main 2>&1', $output_muster);
 
             $check = $this->compare_solution($output, $output_muster);
-
+            unlink($fileName.".class");
+            unlink("main.java");
+            unlink("main.class");
             if($check == false) {
                 $return['status'] = false;
                 $tempy = $this->init($erg->musterloesung);
@@ -78,9 +80,6 @@ class CheckCode
         }
 
         unlink($fileName.".java");
-        unlink($fileName.".class");
-        unlink("main.java");
-        unlink("main.class");
 
         return $return;
     }
@@ -110,7 +109,7 @@ class CheckCode
             //echo $value."\n";
             //echo $p_falseValue."\n";
             if($value == $p_falseValue){
-                return $i;
+                return $i+1;
             }
         }
 
@@ -119,7 +118,6 @@ class CheckCode
 
     function compare_code($p_code, $p_muster){
         $return = "";
-
         foreach ($p_code as $index=>$value){
             if (($p_code[$index] != $p_muster[$index]) && (substr($p_code[$index],0,12) != "public class")){
                 $return = $value;

@@ -1,10 +1,27 @@
 import React, {Component} from 'react';
 
 class Dashboard extends Component {
+    runde(x, n) {
+        if (n < 1 || n > 14) return false;
+        let  e = Math.pow(10, n);
+        let k = (Math.round(x * e) / e).toString();
+        if (k.indexOf('.') == -1) k += '.';
+        k += e.toString().substring(1);
+        return k.substring(0, k.indexOf('.') + n+1);
+    }
     render() {
+        console.log(this.props.benutzeraufgaben[1]);
         let percentBegin = (this.props.benutzeraufgaben[1]/this.props.aufgaben)*100,
             percentExperienced = (this.props.benutzeraufgaben[2]/this.props.aufgaben)*100,
-            percentExpert = (this.props.benutzeraufgaben[3]/this.props.aufgaben)*100;
+            percentExpert = (this.props.benutzeraufgaben[3]/this.props.aufgaben)*100,
+            allExercises = this.props.aufgaben * Object.keys(this.props.benutzeraufgaben).length,
+            allExercisesDone = 0,
+            difficulties = Object.keys(this.props.benutzeraufgaben);
+        for(let i=0; i < difficulties.length; i++){
+            allExercisesDone += this.props.benutzeraufgaben[difficulties[i]];
+        }
+        let fullpercentage = (allExercisesDone/allExercises)*100;
+        fullpercentage = this.runde(fullpercentage, 2);
         return (
             <div id="user-home">
                 <div className="w3-container w3-content" style={{maxWidth:'1400px',marginTop:'80px'}}>
@@ -17,7 +34,7 @@ class Dashboard extends Component {
                                     <hr />
                                         <p><i className="fa fa-user fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.name}</p>
                                         <p><i className="fa fa-envelope fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.email}</p>
-                                        <p><i className="fa fa-tasks fa-fw w3-margin-right w3-text-theme"/>{this.props.benutzer.fortschritt}</p>
+                                        <p><i className="fa fa-tasks fa-fw w3-margin-right w3-text-theme"/>{fullpercentage + "%"}</p>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +82,10 @@ class Dashboard extends Component {
                                             <div className="w3-card-2 w3-container" style={{minHeight:"460px"}}>
                                                 <h3>Expertenkurs</h3><br />
                                                 <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{fontSize:"120px"}}/>
-                                                <p>Du bist neu auf der Insel?</p>
+                                                <p>Du kennst jeden Stein auf der Insel?</p>
+                                                <p>Stürze dich ins Abenteuer</p>
+                                                <p>Zahlreiche Herausforderungen</p>
+                                                <p>Keinerlei Hilfestellung</p>
                                                 <p>Fortschritt:</p>
                                                 <div>
                                                     <div className="w3-light-grey w3-round-xlarge">

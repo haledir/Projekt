@@ -16,7 +16,9 @@ class RegitryForm extends Component {
                 "passwort-w": "",
             },
             passwordDifference: false,
-            emailDifference: false
+            emailDifference: false,
+            eingabe: false,
+            error: false
         };
     };
     changeSignUp(event){
@@ -39,8 +41,8 @@ class RegitryForm extends Component {
                 vorname: this.state.signUp.vorname,
                 nachname: this.state.signUp.nachname,
                 email: this.state.signUp.email
-            };
-            $.ajax({
+            },
+                request = $.ajax({
                 method: "POST",
                 url: "http://localhost/Projekt/REST_API/user",
                 headers: {
@@ -48,16 +50,34 @@ class RegitryForm extends Component {
                 },
                 dataType: 'json',
                 data: benutzer
-            }).done(function( data ) {
-                console.log(data);
-            });
+            }),
+                state = {eingabe: true};
+            request.done(function( data ) {
+                state.error = false;
+                this.setState((prevState) => {
+                    return state;
+                })
+            }.bind(this));
+            request.fail(function (jqXHR, textStatus) {
+                state.error = true;
+                this.setState((prevState) => {
+                    return state;
+                })
+            }.bind(this));
         }
     };
     render() {
-        let loginScreenStyle = {};
+        let loginScreenStyle = {},
+            emailClassName = this.state.emailDifference ? " lucy-repeat-failure" : "",
+            passwortClassName = this.state.passwordDifference ? " lucy-repeat-failure" : "",
+            returnDiv;
+        if(this.state.eingabe) {
+            returnDiv = this.state.error ?
+                <div className="w3-container w3-border-red w3-border w3-center">Zu dieser Matrikelnummer existiert
+                    bereits ein Konto!</div> :
+                <div className="w3-container w3-border-red w3-border w3-center">Das Konto wurde erstellt!</div>;
+        }
         loginScreenStyle.display = this.props.show ? "block" : "none";
-        let emailClassName = this.state.emailDifference ? " lucy-repeat-failure" : "";
-        let passwortClassName = this.state.passwordDifference ? " lucy-repeat-failure" : "";
         return (
             <form className="w3-container w3-card-4" onSubmit={this.signUpFormSubmit.bind(this)}>
                 <div className="w3-section">
@@ -98,6 +118,7 @@ class RegitryForm extends Component {
                     <input id="passwort-w" className={"w3-input" + passwortClassName} type="password" onChange={this.changeSignUp.bind(this)} required/>
                     <label>Passwort wiederholen</label>
                 </div>
+                {returnDiv}
                 <div className="w3-padding">
                     <button type="submit" className="w3-button w3-blue-grey" id="btnRegister" disabled={this.state.emailDifference || this.state.passwordDifference}>
                         Registrieren
